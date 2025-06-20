@@ -1,0 +1,69 @@
+$Phone-width: 320px;
+$Small-phonewidth:300px;
+$Phone-width1: 351px;
+$Phone-width2: 376px;
+$Phone-width3: 441px;
+$Phonesmall:480px;
+$tablet-width: 768px;
+$tabletPortrait-width: 991px;
+$largetablewidth:1023px;
+$desktop-width: 1024px;
+$desktop-width1: 1025px;
+$desktop-width3: 1150px;
+$desktop-width2: 1290px;
+$AboveNormalLP-Macbook: 1367px;
+$large-screen: 1450px;
+$AboveNormal-desktop: 1367px;
+
+// Phone responsive Media Query
+
+
+@mixin PhoneSmall {
+  @media (min-width: #{$Small-phonewidth}) and (max-width: #{$Phonesmall - 1px}) {
+    @content;
+  }
+}
+@mixin Phone {
+    @media (min-width: #{$Phone-width}) and (max-width: #{$tablet-width - 1px}) {
+      @content;
+    }
+  }
+@mixin PhoneMiddium {
+  @media (min-width: #{$Phone-width1}) and (max-width: #{$Phone-width2 - 1px}) {
+    @content;
+  }
+}
+@mixin PhoneLarge {
+  @media (min-width: #{$Phone-width2}) and (max-width: #{$Phone-width3 - 1px}) {
+    @content;
+  }
+}
+
+@mixin Tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$tabletPortrait-width - 1px}) {
+    @content;
+  }
+}
+@mixin Tabletlarger {
+  @media (min-width: #{$Phone-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+@mixin TabletLandscape {
+  @media (min-width: #{$desktop-width}) and (max-width: #{$desktop-width3}) {
+    @content;
+  }
+}
+@mixin TabletLargesize {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width}) {
+    @content;
+  }
+}
+@mixin LargeScreen {
+  @media (min-width: #{$desktop-width1}) and (max-width: #{$desktop-width2}) {
+    @content;
+  }
+  
+}
+
+

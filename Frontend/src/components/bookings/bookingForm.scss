@@ -1,0 +1,543 @@
+@import '../../assets/scss/Responsive.scss';
+.booking-layout {
+  .main-heading {
+    border: none !important;
+  }
+}
+
+.bookingform-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+
+  .addbooking-form {
+    background-color: #f6f6f6;
+    padding: 20px;
+    @include Phone{
+      padding: 10px;
+    }
+
+    .form-wrapper {
+      &.addbooking {
+        .submitbtn {
+          margin-top: 20px;
+        }
+      }
+
+      .row {
+        align-items: baseline;
+      }
+
+      label {
+        font-size: 16px;
+        line-height: 21px;
+        color: #343434;
+        font-weight: 600;
+        font-family: "Nunito Sans", sans-serif;
+        display: block;
+      }
+
+      .selecttime-field {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        border: 1px solid #ced4da;
+        background-color: #ffffff;
+        border-radius: 6px;
+
+        input {
+          border: none;
+          border-radius: 6px;
+        }
+
+        .react-datepicker-wrapper {
+          // &:first-child {
+          //   width: 218px;
+          //   input {
+          //     width: 218px;
+          //   }
+          // }
+        }
+      }
+
+      .searchWrapper {
+        height: auto;
+        border-radius: 6px;
+        background-color: white;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        border: 1px solid #ced4da;
+
+        input {
+          width: 100px;
+          border: none;
+          background-color: transparent;
+          border-radius: 0px;
+          height: auto;
+          margin-top: 0px;
+        }
+      }
+
+      .optionListContainer {
+        .optionContainer {
+          .notFound {
+            font-family: "Nunito Sans", sans-serif;
+            font-size: 15px;
+            line-height: 26px;
+            font-weight: 400;
+          }
+
+          .highlightOption {
+            background-color: #2b6151;
+          }
+
+          .option {
+            font-family: "Nunito Sans", sans-serif;
+            font-size: 15px;
+            line-height: 26px;
+            font-weight: 400;
+
+            &:hover {
+              background-color: #2b6151;
+            }
+          }
+        }
+      }
+
+      input,
+      select {
+        height: 48px;
+        border-radius: 6px;
+        background-color: rgba(255, 255, 255, 1);
+        font-size: 15px;
+        line-height: 26px;
+        color: #4d4d4d;
+        width: 100%;
+        font-weight: 400;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        appearance: none;
+        padding: 0.375rem 0.75rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        font-family: "Nunito Sans", sans-serif;
+      }
+
+      .submitbtn {
+        margin-top: 25px;
+        margin-bottom: 30px;
+
+        .btn {
+          background-color: #14513e;
+          border: 1px solid #14513e;
+          width: 100%;
+          max-width: 135px;
+          font-size: 17px;
+
+          svg {
+            margin-left: 4px;
+          }
+        }
+      }
+    }
+  }
+}
+
+input::placeholder {
+  color: #343434;
+  opacity: 1;
+}
+
+input:-ms-input-placeholder {
+  color: #343434;
+}
+
+input::-ms-input-placeholder {
+  color: #343434;
+}
+.booking-detail-wrapper{
+  background-color: #f6f6f6;
+  padding: 40px 20px 30px;
+  width: 100%;
+  .appointment-booking-wrap{
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.08);
+    margin-bottom: 0px;
+    border-radius: 3px;
+    .app-book{
+      .bk-heading{
+        display: flex;
+        align-items: baseline;
+        .icon{
+          margin-right: 6px;
+          line-height: 0px;
+          position: relative;
+          top: -3px;
+          svg{
+            color: #145340;
+          }
+        }
+        .bk-title{
+          h2{
+            position: relative;
+            font-size: 20px;
+            color: #404040;
+            font-weight: 500;
+            font-family: "Rubik", sans-serif;
+          }
+          h3{
+            font-size: 16px;
+            color: #145340;
+            font-weight: 400;
+            font-family: "Rubik", sans-serif;
+          }
+        }
+      }
+      .bk-customer-detail{
+        margin-top: 20px;
+        h3{
+          font-size: 16px;
+          line-height: 26px;
+          color: #3f3f3f;
+          font-weight: 600;
+          font-family: "Nunito Sans", sans-serif;
+          margin-bottom: 10px;
+        }
+        .bk-salon-box{
+          margin-bottom: 16px;
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          .bk-cdt{
+            h2{
+              font-size: 16px;
+              line-height: 26px;
+              color: #333333;
+              font-weight: 500;
+              font-family: "Rubik", sans-serif;
+              margin-bottom: 2px;
+            }
+            p{
+              font-size: 14px;
+              line-height: 26px;
+              color: #3f3f3f;
+              font-weight: 600;
+              font-family: "Nunito Sans", sans-serif;
+              margin-bottom: 0px;
+              b{
+                font-family: "Nunito Sans", sans-serif;
+                margin-right: 5px;
+                font-weight: 800;
+              }
+            }
+          }
+          .bk-location{
+            .btn{
+              color: #ffffff;
+              font-size: 14px;
+              border: none;
+              padding: 5px 18px;
+              font-weight: 400;
+              border-radius: 4px;
+              background-color: #134e3d;
+              font-family: "Nunito", sans-serif;
+            }
+          }
+        }
+        .bk-booked{
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          margin-bottom: 16px;
+          &.bookingtype-field{
+            margin-top: 16px;
+            .bk-for{
+              .bk-name{
+                span{
+                  margin-left: 0px;
+                }
+              }
+              .bk-cdt{
+                .bk-name{
+                  margin-bottom:4px;
+                  span{
+                    font-weight: 700;
+                    font-size: 15px;
+                  }
+                }
+                p{
+                  font-size: 14px;
+                  line-height: 26px;
+                  color: #3f3f3f;
+                  font-weight: 600;
+                  font-family: "Nunito Sans", sans-serif;
+                  margin-bottom: 0px;
+                  b{
+                    font-family: "Nunito Sans", sans-serif;
+                    margin-right: 5px;
+                    font-weight: 800;
+                  }
+                  span{
+
+                  }
+                }
+              }
+            }
+          }
+          .bk-for{
+            .bkstatus{
+              color: #333333;
+              font-weight:600;
+              font-family: "Rubik", sans-serif;
+              margin-bottom: 2px;
+              font-size: 15px;
+            }
+            h3{
+              font-size: 16px;
+              line-height: 26px;
+              color: #333333;
+              font-weight: 500;
+              font-family: "Rubik", sans-serif;
+              margin-bottom: 2px;
+            }
+            .bk-name{
+              display: flex;
+              align-items: center;
+              svg{
+                color: #145340;
+                font-size: 14px;
+              }
+              span{
+                margin-left: 5px;
+                font-size: 15px;
+                line-height: 26px;
+                color: #3f3f3f;
+                font-weight: 600;
+                font-family: "Nunito Sans", sans-serif;
+                margin-bottom: 0px;
+              }
+            }
+            .bk-id{
+              h4{
+                font-size: 15px;
+                line-height: 26px;
+                color: #000000;
+                font-weight: 600;
+                font-family: "Nunito Sans", sans-serif;
+                margin-bottom: 0px;
+              }
+            }
+          }
+        }
+        .bk-datetime{
+          margin-top: 20px;
+          h3{
+            font-size: 16px;
+            line-height: 26px;
+            color: #333333;
+            font-weight: 500;
+            font-family: "Rubik", sans-serif;
+            margin-bottom:4px;
+          }
+          .bk-dtbox{
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            .bt-time{
+              display: flex;
+              align-items: center;
+              svg{
+                color: #145340;
+                font-size: 14px;
+              }
+              span{
+                margin-left: 5px;
+                font-size: 15px;
+                line-height: 26px;
+                color: #3f3f3f;
+                font-weight: 600;
+                font-family: "Nunito Sans", sans-serif;
+                margin-bottom: 0px;
+              }
+            }
+            .bk-location{
+              .btn{
+                color: #ffffff;
+                font-size: 14px;
+                border: none;
+                padding: 5px 18px;
+                font-weight: 400;
+                border-radius: 4px;
+                background-color: #134e3d;
+                font-family: "Nunito", sans-serif;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .cancle-booking{
+  .btn{
+    color: #ffffff;
+    font-size: 14px;
+    border: none;
+    padding: 5px 18px;
+    font-weight: 400;
+    border-radius: 4px;
+    background-color: #134e3d;
+    font-family: "Nunito", sans-serif;
+  }
+}
+  .booking-detail-box{
+    background: #ffffff;
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.08);
+    margin-bottom: 0px;
+    border-radius: 3px;
+   
+    .bk-dt-list{
+      h2{
+        position: relative;
+        font-size: 20px;
+        color: #404040;
+        font-weight: 500;
+        font-family: "Rubik", sans-serif;
+      }
+    padding: 20px;
+      .bk-dtbox{
+        h3{
+          font-size: 15px;
+          line-height: 26px;
+          color: #333333;
+          font-weight: 500;
+          font-family: "Rubik", sans-serif;
+          margin-bottom: 2px;
+        }
+        .bk-detail-summary{
+          margin-top: 10px;
+          .bk-dt-name{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            .name{
+              font-size: 15px;
+              line-height: 26px;
+              color: #3f3f3f;
+              font-weight: 600;
+              font-family: "Nunito Sans", sans-serif;
+              margin-bottom: 0px;
+            }
+            .price{
+              font-size: 14px;
+              line-height: 26px;
+              color: #000000;
+              font-weight: bold;
+              font-family: "Nunito Sans", sans-serif;
+              margin-bottom: 0px;
+            }
+          }
+        }
+      }
+    
+    }
+    .total-price{
+      background: #f9f9f9;
+      padding: 10px 20px;
+      .total-price-amount{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h3{
+          font-size: 15px;
+          line-height: 26px;
+          color: #333333;
+          font-weight: 500;
+          font-family: "Rubik", sans-serif;
+          margin-bottom: 0px;
+        }
+        b{
+          font-size: 16px;
+          line-height: 26px;
+          color: #000000;
+          font-weight: bold;
+          font-family: "Rubik", sans-serif;
+          margin-bottom: 0px;
+        }
+      }
+    }
+  }
+  .bk-chatbox{
+    background: #ffffff;
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.08);
+    margin-bottom: 0px;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 3px;
+    .bk-help{
+      display: flex;
+      align-items: baseline;
+      position: relative;
+      .help-overlay{
+        display: none;
+        position: absolute;
+        top:0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background: rgba(255, 255,255,0.8);
+        z-index: 999;
+        text-align: center;
+        p{
+          color: red;
+          font-size: 20px;
+          margin-top: 30px;
+        }
+      }
+      &:hover{
+        .help-overlay{
+          display: block;
+      
+      }
+      }
+      .icon{
+        margin-right: 14px;
+        position: relative;
+        top:10px;
+        img{
+          max-width: 34px;
+        }
+      }
+      .helpyou{
+       
+        
+        h2{
+          position: relative;
+          font-size: 20px;
+          color: #404040;
+          font-weight: 500;
+          font-family: "Rubik", sans-serif;
+        }
+        p{
+          font-size: 15px;
+          line-height: 20px;
+          color: #3f3f3f;
+          font-weight: 600;
+          font-family: "Nunito Sans", sans-serif;
+          margin-bottom: 18px;
+          margin-top: 8px;
+        }
+        .btn{
+          color: #ffffff;
+          font-size: 14px;
+          border: none;
+          padding: 5px 18px;
+          font-weight: 400;
+          border-radius: 4px;
+          background-color: #134e3d;
+          font-family: "Nunito", sans-serif;
+        }
+      }
+    }
+  }
+}

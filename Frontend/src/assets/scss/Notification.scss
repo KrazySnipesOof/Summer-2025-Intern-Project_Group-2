@@ -1,0 +1,191 @@
+.notification-layout {
+    .main-heading {
+        border-bottom: none !important;
+
+        h1 {
+            b {
+                color: #e75d09;
+                font-size: 23px;
+                font-weight: 500;
+                font-family: "Rubik", sans-serif;
+                margin-left: 4px;
+            }
+        }
+    }
+
+    .notification-list-wrap {
+        background-color: #f7f7f7;
+        padding: 20px;
+        margin-top: 40px;   
+        .loader{
+            .loading{
+                left: 0px!important;
+            }
+        }
+        .Notification-tab-list{
+            margin-bottom: 30px;
+            margin-top: 10px;
+          
+            .btn{
+                background: transparent;
+                border: 1px solid #134f3d;
+                color: #134f3d;
+                margin-right: 16px;
+                font-size: 14px;
+                width: 100px;
+                &:hover,&:focus,&:active{
+                    background: #134f3d !important;
+                    color: #fff;
+                }
+                &.active{
+                    background: #134f3d !important;
+                    color: #fff;
+                }
+            }
+            ul{
+                display: flex;
+                align-items: center;
+                margin: 0px 0px 18px 0px;
+                padding: 0px;
+                li{
+                    margin-right: 10px;
+                    a{
+                        color: #134e3d;
+                        text-decoration: none;
+                        font-family: "Rubik", sans-serif;
+                        font-weight: 400;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+        .notification-lists{
+          
+            &.nonreadble{
+                .ntf-list{
+                  .nth-list-wrap{
+                    .nth-message-list{
+                      background-color:#ebe9e9;
+                    }
+                  }
+                }
+              }
+        }
+        .ntf-list {
+            &+.ntf-list {
+                margin-top: 20px;
+            }
+
+            h3 {
+                font-size: 18px;
+                line-height: 26px;
+                color: #000000;
+                font-weight: 700;
+                font-family: 'Nunito', sans-serif;
+                text-transform: capitalize;
+                margin-top: 4px;
+            }
+
+            .nth-list-wrap {
+               
+                .nth-message-list {
+                    filter: drop-shadow(0px 5px 6px rgba(0, 0, 0, 0.08));
+                    background-color: #ffffff;
+                    position: relative;
+                    padding: 10px 25px;
+                    margin-bottom: 15px;
+                    &:hover{
+                        background-color:#f9f9f9!important;
+                    }
+                    .nth-ms-box {
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: space-between;
+
+                        .nth-msd {
+                            display: flex;
+                            align-items: center;
+
+                            width: calc(100% - 230px);
+                            .nth-profileicon {
+                                margin-right: 25px;
+
+                                img {
+                                    width: 50px;
+                                    height: 50px;
+                                    min-width: 50px;
+                                    object-fit: cover;
+                                    object-position: center;
+                                    border-radius: 50px;
+                                }
+                            }
+
+                            .nth-message {
+                                margin-right: 30px;
+                                h2 {
+                                    font-size: 18px;
+                                    line-height: 20px;
+                                    color: #404040;
+                                    font-family: 'Nunito', sans-serif;
+                                    font-weight: 500;
+                                    margin-bottom: 0px;
+
+                                    span {
+                                        color: #134e3d;
+                                        font-weight: 700;
+                                    }
+                                }
+
+                                p {
+                                    font-size: 15px;
+                                    line-height: 18px;
+                                    margin-top: 6px;
+                                    color: #555555;
+                                    font-weight: 400;
+                                    font-family: 'Nunito', sans-serif;
+                                    margin-bottom: 0px;
+                                }
+                            }
+                        }
+
+                        .nth-time-ago {
+                            span {
+                                font-size: 12px;
+                                line-height: 26px;
+                                color: #777777;
+                                font-weight: 400;
+                                font-family: "Rubik", sans-serif;
+                            }
+                        }
+
+                    }
+
+                    .cls-btn {
+                        width: 24px;
+                        height: 24px;
+                        border-radius: 12px;
+                        background-color: #134e3d;
+                        padding: 0px;
+                        outline: none;
+                        box-shadow: none;
+                        border: none;
+                        position: absolute;
+                        top: -8px;
+                        right: -8px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        svg {
+                            fill: #f6f6f6;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.not-notification {
+    text-align: center;
+    margin: 20px 0px;
+}

@@ -1,0 +1,94 @@
+@import '../../assets/scss/Responsive.scss';
+.rvn-table-list {
+    .filter-data {
+        display: flex;
+        align-items: center;
+        width: 70%;
+        @include Phone{
+            width: 100%;
+            display: block;
+        }
+        .filter-list {
+            justify-content: start;
+
+            .filter-field {
+                margin: 0px 5px;
+                width: 25%;
+                @include Phone{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .search_input1 {
+        @include TabletLargesize{
+            width: 50%;
+        }
+        .form-control:focus {
+            border-color: #dee2e6;
+        }
+        svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium{
+            fill: #c3c3c3;
+        }
+    }
+}
+
+.revenue-list-section {
+    .addbtn2 {
+        width: 120px;
+        height: 40px;
+        border-radius: 50px;
+        background-image: linear-gradient(148deg, rgba(45, 139, 109, 0.996) 0%, #0c4331 100%);
+        font-size: 14px;
+        line-height: 26px;
+        text-transform: uppercase;
+        color: #ffffff;
+        font-weight: 500;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.revenu-btns {
+    display: flex;
+    justify-content: space-between;
+    @include Phone{
+        display: block;
+       
+    }
+    .report-btns {
+        display: flex;
+        gap: 15px;
+        @include Phone{
+            display: block;
+            margin-bottom: 10px;
+        }
+        .btn-contained {
+            background-color: #00bf8c;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 0;
+            padding: 5px 30px;
+            box-shadow: 0.3em 0.3em 0.3px #c1c1c1;
+            @include Phone{
+                margin-bottom: 15px;
+            }
+        }
+
+        button.btn.btn-payment-btn {
+            background-color: #000;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 0;
+            padding: 5px 30px;
+            box-shadow: 0.3em 0.3em 0.3px #c1c1c1;
+           
+        }
+    }
+
+}

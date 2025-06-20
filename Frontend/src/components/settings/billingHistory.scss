@@ -1,0 +1,98 @@
+@import "../../assets/scss/Responsive.scss";
+.filter-list {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    justify-content: end;
+    @include Phone{
+     display: block;
+     margin-left: 0;
+    }
+    @include TabletLargesize{
+      justify-content: space-between;
+      margin-left: 0px;
+      margin-top: 8px;
+    }
+    .filter-field {
+      margin: 0px 5px;
+      width: 25%;
+      @include Phone{
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      @include TabletLargesize{
+        width: 25%;
+      }
+      &:last-child {
+        margin-right: 0px;
+      }
+
+      .selectoption {
+        position: relative;
+
+        select {
+          border-radius: 0px;
+          border: none;
+          color: #777777;
+          font-size: 15px;
+          line-height: 26px;
+          font-weight: 400;
+          filter: drop-shadow(0px 5px 2.5px rgba(0, 0, 0, 0.05));
+          background-color: #ffffff;
+          position: relative;
+          text-indent: 0.01px;
+        }
+
+        .slarrow {
+          position: absolute;
+          right: 0px;
+          top: 0px;
+          padding: 0px 5px;
+          background-color: #00b289;
+          height: 100%;
+          bottom: 0px;
+          display: flex;
+          align-items: center;
+          pointer-events: none;
+          justify-content: center;
+
+          svg {
+            color: #ffffff;
+            font-size: 19px;
+          }
+        }
+      }
+
+      .input-group {
+        filter: drop-shadow(0px 5px 2.5px rgba(0, 0, 0, 0.05));
+
+        .input__group {
+          width: calc(100% - 33px);
+          cursor: pointer;
+        }
+
+        input {
+          border-radius: 0px;
+          border: none;
+          color: #777777;
+          font-size: 15px;
+          line-height: 26px;
+          font-weight: 400;
+          width: 100%;
+          padding: 6px 10px;
+        }
+
+        .input-group-text {
+          padding: 0px 5px;
+          background-color: #00b289;
+          border-radius: 0px;
+          border: none;
+
+          svg {
+            fill: #ffffff;
+            font-size: 23px;
+          }
+        }
+      }
+    }
+  }

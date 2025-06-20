@@ -1,0 +1,297 @@
+@import "../../assets/scss/Responsive.scss";
+@import "../../assets/scss/Mixin.scss";
+.product-inventory-item {
+  background: #ffffff;
+  padding: 10px 22px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+
+  .prin-item-field {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    @include Phone {
+      display: block;
+    }
+
+    .item-stored {
+      p {
+        margin: 0px;
+        font-size: 16px;
+        line-height: 26px;
+        color: #333333;
+        font-weight: 500;
+      }
+
+      h1 {
+        margin-bottom: 0px;
+        color: #40b693;
+        font-size: 34px;
+        font-weight: 600;
+        @include Phone {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    .prin-btn {
+      .btn {
+        color: #ffffff;
+        font-size: 15px;
+        border: none;
+        padding: 8px 18px;
+        font-weight: 400;
+        border-radius: 50px;
+        // background-color: #134e3d;
+        font-family: "Nunito", sans-serif;
+        background-image: linear-gradient(
+          148deg,
+          rgba(45, 139, 109, 0.996) 0%,
+          #0c4331 100%
+        );
+      }
+    }
+  }
+}
+
+.Product-img img {
+  width: 40px;
+  height: 40px;
+}
+
+.rvn-table-wrap table {
+  margin-top: 14px;
+  border-spacing: 0px 1px !important;
+}
+
+.inventory-modal {
+  .modal-content {
+    border-radius: 16px;
+    padding: 24px;
+    width: 492px;
+
+    @media (max-width: 450px) {
+      padding: 16px;
+    }
+
+    .modal-body {
+      padding: 0px;
+      margin: 0px;
+
+      small {
+        color: #212529 !important;
+        font-weight: 300;
+      }
+
+      .images-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid #c6c6c6;
+        height: 152px;
+        input[type="file"] {
+          display: none;
+        }
+
+        ::-webkit-file-upload-button {
+          display: none;
+        }
+
+        ::file-selector-button {
+          display: none;
+        }
+
+        @media (max-width: 450px) {
+          height: 100px;
+        }
+
+        .empty-img {
+          width: 100%;
+          height: 100%;
+          border-radius: 8px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          border: 1px dashed #94c8c3;
+          cursor: pointer;
+
+          small {
+            font-size: 10px;
+          }
+
+          .plus-btn {
+            width: 30px;
+            height: 30px;
+            background: #F5F5F5;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            border-radius: 200px;
+            padding: 5px;
+          }
+        }
+
+        .image {
+          min-width: 136px;
+          max-width: 136px;
+          height: 136px;
+          border-radius: 6px;
+          background: #c6c6c6;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          cursor: pointer;
+
+          .remove-btn {
+            position: absolute;
+            margin: auto;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 200px;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+          }
+
+          @media (max-width: 450px) {
+            min-width: 84px;
+            max-width: 84px;
+            height: 84px;
+          }
+        }
+      }
+
+      .service-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 17px;
+        font-weight: 300;
+
+        p {
+          margin: 0px;
+          padding: 0px;
+        }
+      }
+
+      .service-container {
+        .service {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 8px;
+          .service-item {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            height: 42px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            padding: 12px;
+
+            p {
+              color: #4d4d4d;
+              font-weight: 300;
+              font-size: 16px;
+              margin: 0px;
+              padding: 0px;
+            }
+
+            .close-btn {
+              cursor: pointer;
+            }
+          }
+          .est-use {
+            width: 72px;
+          }
+        }
+        .select-service-button {
+          max-width: 180px !important;
+          .css-13cymwt-control {
+            border: 2px solid $green;
+            .css-1jqq78o-placeholder {
+              color: $green !important;
+              font-weight: 600;
+            }
+            svg {
+              color: $green;
+            }
+          }
+        }
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: end;
+        gap: 14px;
+        margin-top: 14px;
+        .save-btn {
+          background-color: $green;
+          border-color: $green;
+        }
+      }
+    }
+  }
+}
+
+.userlist_wrapper {
+  .userlist-layout {
+    @include Phone {
+      padding: 32px 9px 30px;
+    }
+    .user-table {
+      .product-inventory-list {
+        .inventory-remove {
+          width: 100px;
+          height: 35px;
+          border-radius: 20px;
+          background: #333333;
+          font-size: 14px;
+          line-height: 26px;
+          text-transform: uppercase;
+          color: #ffffff;
+          font-weight: 500;
+          border: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        table {
+          tr {
+            th {
+              div {
+                margin: auto;
+
+                div + div {
+                  width: 0px !important;
+                  margin: initial;
+                }
+              }
+            }
+
+            td {
+              text-align: center;
+
+              &:nth-child(4) {
+                font-weight: 600;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

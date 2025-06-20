@@ -1,0 +1,205 @@
+@import "./Responsive.scss";
+@import "./Mixin.scss";
+
+.yearly-bar-container {
+  .yearly-bar {
+    width: 100%;
+    height: 60px;
+    background-color: #dddddd;
+    border-radius: 16px;
+    margin-bottom: 8px;
+    position: relative;
+    overflow: hidden;
+
+    .paid {
+      position: absolute;
+      height: 100%;
+      background-color: $green;
+      border-radius: 16px 0 0 16px;
+      transition: width 1.5s ease-in-out;
+    }
+
+    .booked {
+      position: absolute;
+      height: 100%;
+      background-color: #85b4a5;
+      border-radius: 16px;
+      transition: width 1.5s ease-in-out;
+    }
+  }
+
+  .bottom-yearly {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    small {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      span {
+        min-width: 10px;
+        min-height: 10px;
+        border-radius: 100px;
+        background-color: $green;
+
+        &.booked {
+          background-color: #85b4a5;
+        }
+      }
+    }
+  }
+}
+
+.loader-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 80px;
+}
+
+.goals-row-display {
+  background-color: #f7eee1;
+  width: 100%;
+  padding: 24px 32px 14px 32px;
+  margin-top: 20px;
+  color: $green;
+  @include Phone {
+    padding: 20px 20px 10px 20px;
+  }
+
+  .goals-row {
+    display: flex;
+    gap: 24px;
+    overflow-x: scroll;
+
+    .goals-box {
+      background-color: white;
+      box-shadow: 0px 4px 10px #0000001a;
+      border-radius: 16px;
+      height: 196px;
+      min-width: 371px;
+      max-width: 371px;
+      padding: 17px 20px;
+      margin-bottom: 10px;
+
+      .goals-header {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 30px;
+
+        span {
+          font-size: 18px;
+          font-weight: 700;
+          margin-top: -4px;
+        }
+
+        h2 {
+          font-size: 18px;
+          font-weight: 700;
+        }
+      }
+
+      .bars-container {
+        margin: 0px 16px;
+        display: flex;
+        justify-content: space-between;
+
+        .bar-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .empty-bar {
+            background-color: #dddddd;
+            width: 21px;
+            height: 55px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+
+            &.closed {
+              background: repeating-linear-gradient(
+                165deg,
+                #dddddd,
+                #dddddd 3px,
+                #efefef 3px,
+                #efefef 6px
+              );
+            }
+
+            .paid-bar {
+              position: absolute;
+              bottom: 0;
+              width: 100%;
+              background-color: $green;
+              border-radius: 0px 0px 4px 4px;
+              transition: width 1.5s ease-in-out;
+            }
+
+            .booked-bar {
+              position: absolute;
+              bottom: 0;
+              width: 100%;
+              background-color: #85b4a5;
+              border-radius: 4px;
+              transition: width 1.5s ease-in-out;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.daily-goals-row-display {
+  background-color: #f7eee180;
+  width: 100%;
+  padding: 24px 32px 14px 32px;
+  color: $green;
+  @include Phone {
+    padding: 20px 20px 10px 20px;
+  }
+
+  .goal-box {
+    background-color: white;
+    box-shadow: 0px 4px 10px #0000001a;
+    border-radius: 16px;
+    height: 152px;
+    min-width: 100%;
+    padding: 17px 20px;
+    margin-bottom: 10px;
+
+    .goals-header {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 6px;
+
+      span {
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: -4px;
+      }
+
+      h2 {
+        font-size: 18px;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.scroll-container {
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap; /* Prevents wrapping */
+
+  /* Hide scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
