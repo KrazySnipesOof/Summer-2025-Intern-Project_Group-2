@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="footer-wrapper">
         <Container>
           <div className="copyright">
-            Copyright © 2023 BISI. All rights reserved.
+            Copyright © 2025 BISI. All rights reserved.
           </div>
         </Container>
       </div>
