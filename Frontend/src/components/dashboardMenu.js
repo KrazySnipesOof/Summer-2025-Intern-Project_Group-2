@@ -160,7 +160,7 @@ if(response.status == 200){
     } 
     if (!form.offline && !form.online) {
       isValid = false;
-      err["payment"] = "Select atleast one payment type";
+      err["payment"] = "Select at least one payment type";
     } 
     setError(err);
     return isValid;
