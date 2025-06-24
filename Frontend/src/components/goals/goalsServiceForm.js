@@ -75,12 +75,12 @@ const GoalsServiceform = ({
                     value={service?.serviceHours}
                   >
                     <option value="">Select Hours</option>
-                    <option value="0">0 hour</option>
+                    <option value="0">0 hours</option>
 
                     {[...Array.from(Array(13).keys())]
                       .slice(1)
                       .map((num, i) => (
-                        <option key={i}>{num ? num + " hour" : ""}</option>
+                        <option key={i}>{num + " " + (num === 1 ? "hour" : "hours")}</option>
                       ))}
                   </Form.Select>
 
@@ -100,7 +100,7 @@ const GoalsServiceform = ({
                   >
                     <option value="">Select Minutes</option>
                     {[...Array.from(Array(4).keys())].slice(1).map((num, i) => (
-                      <option key={i}>{num ? num * 15 + "minute" : ""}</option>
+                      <option key={i}>{num ? num * 15 + " minutes" : ""}</option>
                     ))}
 
                     <span className="error">
