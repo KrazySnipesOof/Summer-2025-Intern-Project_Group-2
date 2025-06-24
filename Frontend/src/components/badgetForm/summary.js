@@ -273,7 +273,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Yearly expense",
+        Name: "Total Yearly Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalAnnualTransportation
             ? summaryObject.totalAnnualTransportation.toFixed(2)
