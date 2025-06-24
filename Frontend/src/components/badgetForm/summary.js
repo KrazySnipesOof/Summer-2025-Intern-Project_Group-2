@@ -190,7 +190,7 @@ const Summary = (props) => {
         value: `$ ${props.housing.other ? props.housing.other : 0}`,
       },
       {
-        Name: "Total Monthly expense",
+        Name: "Total Monthly Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalMonthlyHousing
             ? summaryObject.totalMonthlyHousing
@@ -198,7 +198,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Yearly expense",
+        Name: "Total Yearly Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalAnnualHousing
             ? summaryObject.totalAnnualHousing
@@ -265,7 +265,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Monthly expense",
+        Name: "Total Monthly Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalMonthlyTransportation
             ? summaryObject.totalMonthlyTransportation.toFixed(2)
@@ -290,13 +290,13 @@ const Summary = (props) => {
         value: `$ ${props.houseHold.groceries ? props.houseHold.groceries : 0}`,
       },
       {
-        Name: "Personal care",
+        Name: "Personal Care",
         value: `$ ${
           props.houseHold.personalCare ? props.houseHold.personalCare : 0
         }`,
       },
       {
-        Name: "Clothing/Dry cleaning",
+        Name: "Clothing/Dry Cleaning",
         value: `$ ${
           props.houseHold.ClothingDryCleaning
             ? props.houseHold.ClothingDryCleaning
@@ -318,7 +318,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Dependent/Child care",
+        Name: "Dependent/Child Care",
         value: `$ ${
           props.houseHold.dependentChildCare
             ? props.houseHold.dependentChildCare
@@ -342,7 +342,7 @@ const Summary = (props) => {
         value: `$ ${props.houseHold.others ? props.houseHold.others : 0}`,
       },
       {
-        Name: "Total Monthly expense",
+        Name: "Total Monthly Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalMonthlyHouseHold
             ? summaryObject.totalMonthlyHouseHold
@@ -350,7 +350,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Yearly expense",
+        Name: "Total Yearly Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalAnnualHouseHold
             ? summaryObject.totalAnnualHouseHold
@@ -363,7 +363,7 @@ const Summary = (props) => {
         value: "",
       },
       {
-        Name: "Credit card Payment",
+        Name: "Credit Card Payments",
         value: `$ ${
           props.loanPayments.creditCardPayment
             ? props.loanPayments.creditCardPayment
@@ -371,7 +371,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Other Loan Payment",
+        Name: "Other Loan Payments",
         value: `$ ${
           props.loanPayments.otherLoanPayment
             ? props.loanPayments.otherLoanPayment
@@ -391,7 +391,7 @@ const Summary = (props) => {
         value: `$ ${props.loanPayments.others ? props.loanPayments.others : 0}`,
       },
       {
-        Name: "Total Monthly expense",
+        Name: "Total Monthly Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalMonthlyLoanPayments
             ? summaryObject.totalMonthlyLoanPayments
@@ -399,7 +399,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Yearly expense",
+        Name: "Total Yearly Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalAnnualLoanPayments
             ? summaryObject.totalAnnualLoanPayments
@@ -428,7 +428,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Expense",
+        Name: "Expenses",
         value: "",
       },
       {
@@ -440,7 +440,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Long term Health care Insurance",
+        Name: "Long-Term Health Care Insurance",
         value: `$ ${
           props.personalInsurance.healthCareInsurance
             ? props.personalInsurance.healthCareInsurance
@@ -462,7 +462,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Monthly expense",
+        Name: "Total Monthly Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalMonthlyPersonalInsurance
             ? summaryObject.totalMonthlyPersonalInsurance
@@ -470,7 +470,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Yearly expense",
+        Name: "Total Yearly Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalAnnualPersonalInsurance
             ? summaryObject.totalAnnualPersonalInsurance
@@ -533,7 +533,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Monthly expense",
+        Name: "Total Monthly Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalMonthlyDiscretionary
             ? summaryObject.totalMonthlyDiscretionary
@@ -541,7 +541,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Yearly expense",
+        Name: "Total Yearly Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalAnnualDiscretionary
             ? summaryObject.totalAnnualDiscretionary
@@ -602,7 +602,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Monthly Company Expense",
+        Name: "Total Monthly Company Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalMonthlyCompanyExpenses
             ? summaryObject.totalMonthlyCompanyExpenses
@@ -610,7 +610,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Yearly Company Expense",
+        Name: "Total Yearly Company Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalAnnualCompanyExpenses
             ? summaryObject.totalAnnualCompanyExpenses
@@ -619,7 +619,7 @@ const Summary = (props) => {
       },
       { Name: "", value: "" },
       {
-        Name: "Total Monthly Personal Expense",
+        Name: "Total Monthly Personal Expenses",
         value: `$ ${
           summaryObject && summaryObject.netMonthlyExpense
             ? summaryObject.netMonthlyExpense.toFixed(2)
@@ -627,7 +627,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Yearly Personal Expense",
+        Name: "Total Yearly Personal Expenses",
         value: `$ ${
           summaryObject && summaryObject.netAnnualExpense
             ? summaryObject.netAnnualExpense.toFixed(2)
@@ -635,7 +635,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Monthly Company Expense",
+        Name: "Total Monthly Company Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalMonthlyCompanyExpenses
             ? summaryObject.totalMonthlyCompanyExpenses.toFixed(2)
@@ -643,7 +643,7 @@ const Summary = (props) => {
         }`,
       },
       {
-        Name: "Total Yearly Company Expense",
+        Name: "Total Yearly Company Expenses",
         value: `$ ${
           summaryObject && summaryObject.totalAnnualCompanyExpenses
             ? summaryObject.totalAnnualCompanyExpenses.toFixed(2)
@@ -792,7 +792,7 @@ const Summary = (props) => {
                         </tbody>
                         <tfoot>
                           <tr>
-                            <td>Total Monthly expense </td>
+                            <td>Total Monthly Expenses </td>
                             <td>
                               $
                               {summaryObject &&
@@ -802,7 +802,7 @@ const Summary = (props) => {
                             </td>
                           </tr>
                           <tr>
-                            <td>Total Yearly expense</td>
+                            <td>Total Yearly Expenses</td>
                             <td>
                               $
                               {summaryObject && summaryObject.totalAnnualHousing
@@ -848,7 +848,7 @@ const Summary = (props) => {
                             </td>
                           </tr>
                           <tr>
-                            <td>Personal care:</td>
+                            <td>Personal Care:</td>
                             <td>
                               $
                               {props.houseHold.personalCare
@@ -857,7 +857,7 @@ const Summary = (props) => {
                             </td>
                           </tr>
                           <tr>
-                            <td>Clothing/Dry cleaning: </td>
+                            <td>Clothing/Dry Cleaning: </td>
                             <td>
                               $
                               {props.houseHold.ClothingDryCleaning
@@ -884,7 +884,7 @@ const Summary = (props) => {
                             </td>
                           </tr>
                           <tr>
-                            <td>Dependent/Child care: </td>
+                            <td>Dependent/Child Care: </td>
                             <td>
                               $
                               {props.houseHold.dependentChildCare
@@ -922,7 +922,7 @@ const Summary = (props) => {
                         </tbody>
                         <tfoot>
                           <tr>
-                            <td>Total Monthly expense </td>
+                            <td>Total Monthly Expenses </td>
                             <td>
                               $
                               {summaryObject &&
@@ -932,7 +932,7 @@ const Summary = (props) => {
                             </td>
                           </tr>
                           <tr>
-                            <td>Total Yearly expense</td>
+                            <td>Total Yearly Expenses</td>
                             <td>
                               $
                               {summaryObject &&
@@ -993,7 +993,7 @@ const Summary = (props) => {
                     </div>
 
                     <div className="summary-heading">
-                      <h2>Expense</h2>
+                      <h2>Expenses</h2>
                     </div>
                     <div className="summary-listbar">
                       <Table striped bordered hover>
@@ -1009,7 +1009,7 @@ const Summary = (props) => {
                             </td>
                           </tr>
                           <tr>
-                            <td>Long term Health care Insurance: </td>
+                            <td>Long-Term Health Care Insurance: </td>
                             <td>
                               $
                               {props.personalInsurance.healthCareInsurance
@@ -1039,7 +1039,7 @@ const Summary = (props) => {
                         </tbody>
                         <tfoot>
                           <tr>
-                            <td>Total Monthly expense </td>
+                            <td>Total Monthly Expenses </td>
                             <td>
                               $
                               {summaryObject &&
@@ -1049,7 +1049,7 @@ const Summary = (props) => {
                             </td>
                           </tr>
                           <tr>
-                            <td>Total Yearly expense</td>
+                            <td>Total Yearly Expenses</td>
                             <td>
                               $
                               {summaryObject &&
@@ -1154,7 +1154,7 @@ const Summary = (props) => {
                         </tbody>
                         <tfoot>
                           <tr>
-                            <td>Total Monthly expense </td>
+                            <td>Total Monthly Expenses </td>
                             <td>
                               $
                               {summaryObject &&
@@ -1164,7 +1164,7 @@ const Summary = (props) => {
                             </td>
                           </tr>
                           <tr>
-                            <td>Total Yearly expense</td>
+                            <td>Total Yearly Expenses</td>
                             <td>
                               $
                               {summaryObject &&
@@ -1202,7 +1202,7 @@ const Summary = (props) => {
                         </thead>
                         <tbody>
                           <tr>
-                            <td>Credit card Payment:</td>
+                            <td>Credit Card Payments:</td>
                             <td>
                               $
                               {props.loanPayments.creditCardPayment
@@ -1211,7 +1211,7 @@ const Summary = (props) => {
                             </td>
                           </tr>
                           <tr>
-                            <td>Other Loan Payment:</td>
+                            <td>Other Loan Payments:</td>
                             <td>
                               $
                               {props.loanPayments.otherLoanPayment
@@ -1240,7 +1240,7 @@ const Summary = (props) => {
                         </tbody>
                         <tfoot>
                           <tr>
-                            <td>Total Monthly expense: </td>
+                            <td>Total Monthly Expenses: </td>
                             <td>
                               $
                               {summaryObject &&
@@ -1250,7 +1250,7 @@ const Summary = (props) => {
                             </td>
                           </tr>
                           <tr>
-                            <td>Total Yearly expense:</td>
+                            <td>Total Yearly Expenses:</td>
                             <td>
                               $
                               {summaryObject &&
@@ -1354,7 +1354,7 @@ const Summary = (props) => {
                         </tbody>
                         <tfoot>
                           <tr>
-                            <td>Total Monthly expense </td>
+                            <td>Total Monthly Expenses </td>
                             <td>
                               $
                               {summaryObject &&
@@ -1364,7 +1364,7 @@ const Summary = (props) => {
                             </td>
                           </tr>
                           <tr>
-                            <td>Total Yearly expense</td>
+                            <td>Total Yearly Expenses</td>
                             <td>
                               $
                               {summaryObject &&
@@ -1467,7 +1467,7 @@ const Summary = (props) => {
                         </tbody>
                         <tfoot>
                           <tr>
-                            <td>Total Monthly Company Expense </td>
+                            <td>Total Monthly Company Expenses </td>
                             <td>
                               $
                               {summaryObject &&
@@ -1477,7 +1477,7 @@ const Summary = (props) => {
                             </td>
                           </tr>
                           <tr>
-                            <td>Total Yearly Company Expense</td>
+                            <td>Total Yearly Company Expenses</td>
                             <td>
                               $
                               {summaryObject &&
@@ -1494,11 +1494,11 @@ const Summary = (props) => {
               </div>
             </div>
             <div className="total-income-value">
-              <h1>Total Monthly Expense</h1>
+              <h1>Total Monthly Expenses</h1>
               <Table className="Total-incomebox">
                 <tfoot>
                   <tr>
-                    <td>Total Monthly Personal Expense</td>
+                    <td>Total Monthly Personal Expenses</td>
                     <td>
                       {" "}
                       $
@@ -1508,7 +1508,7 @@ const Summary = (props) => {
                     </td>
                   </tr>
                   <tr>
-                    <td>Total Yearly Personal Expense</td>
+                    <td>Total Yearly Personal Expenses</td>
                     <td>
                       {" "}
                       $
@@ -1519,7 +1519,7 @@ const Summary = (props) => {
                   </tr>
 
                   <tr>
-                    <td>Total Monthly Company Expense</td>
+                    <td>Total Monthly Company Expenses</td>
                     <td>
                       $
                       {summaryObject &&
@@ -1529,7 +1529,7 @@ const Summary = (props) => {
                     </td>
                   </tr>
                   <tr>
-                    <td>Total Yearly Company Expense</td>
+                    <td>Total Yearly Company Expenses</td>
                     <td>
                       $
                       {summaryObject && summaryObject.totalAnnualCompanyExpenses
