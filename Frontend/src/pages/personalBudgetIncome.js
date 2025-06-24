@@ -385,7 +385,7 @@ const HorizontalLinearStepper = ({
   const steps = [
     {
       label: "Housing",
-      subheading: "Fill housing form",
+      subheading: "Fill Housing form",
       description: (
         <Housing housing={housing} handleHosuing={handleHousingchange} />
       ),
@@ -524,7 +524,7 @@ const HorizontalLinearStepper = ({
          </div>
          <div className="layout-content-wrapper">
            <div className="main-heading">
-             <h1>Personal budget income</h1>
+             <h1>Personal Budget Income</h1>
              <p>Follow these simple steps to complete your budget.</p>
            </div>
            <div className="budget-income-form">
