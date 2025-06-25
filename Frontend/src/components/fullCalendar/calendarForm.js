@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import FullCalendar from "@fullcalendar/react";
@@ -53,14 +53,14 @@ const CalenderApp = () => {
     return startTime;
   };
 
-  const getDetails = async (start = null, end = null) => { //set start and end values to null
+
+  const getDetails = useCallback( async(start = null, end = null) => { //set start and end values to null
     const resp = await bookingService.bookingList(start && end ? { start, end } : {});
     if (resp.status === 200) {
       const response = resp?.data?.data;
       let arr = [];
       if (response.length > 0) {
-        response.map((res) => {
-          let obj = {
+        arr = response.map((res) => ({
             title: res?.service?.map((serv) => serv?.service).join(", ")
               || "",
             groupId: res?._id,
@@ -94,13 +94,11 @@ const CalenderApp = () => {
                 ? "#9FD19F"
                 : "#D95B30",
             name: res?.name,
-          };
-          arr.push(obj);
-        });
+        }));
       }
       setData(arr);
     }
-  };
+  }, [activeView, setData]);
   //Effect to fetch bookings when view or date range changes
   useEffect(() => {
     //getDetails();
@@ -109,7 +107,7 @@ const CalenderApp = () => {
     } else {
       getDetails(); //Initial load fallback
     }
-  }, [activeView, dateRange]); //Re-fetch if view or visible range changes
+  }, [activeView, dateRange, getDetails]); //Re-fetch if view or visible range changes
 
   //updated to capture view and visible date range
   const onDatesSet = (info) => {
@@ -121,28 +119,25 @@ const CalenderApp = () => {
 
   useEffect(() => {
     const button = document.querySelector(".fc-calendar-button");
-    if (button) {
+    if (!button) return; 
       button.innerHTML = "";
 
       const icon = document.createElement("span");
       icon.innerHTML = `<i class="fa fa-caret-down"></i>`;
 
-      button.addEventListener("click", () => {
-        if (datepickerRef.current) {
-          datepickerRef.current.setOpen(true);
-        }
-      });
+      // Define the handler function once, so it can be removed later
+      const handleClick = () => {
+      if (datepickerRef.current) {
+        datepickerRef.current.setOpen(true);
+      }
+    };
 
-      button.appendChild(icon);
-    }
+  button.addEventListener("click", handleClick);
+  button.appendChild(icon);
 
     return () => {
       if (button) {
-        button.removeEventListener("click", () => {
-          if (datepickerRef.current) {
-            datepickerRef.current.setOpen(true);
-          }
-        });
+        button.removeEventListener("click", handleClick);
       }
     };
   }, []);
@@ -171,8 +166,7 @@ const CalenderApp = () => {
       const response = resp?.data?.data;
       let arr = [];
       if (response.length > 0) {
-        response.map((res) => {
-          let obj = {
+        arr = response.map((res) => ({
             title: res?.service?.map((serv) => serv.service),
             groupId: res._id,
             start: moment(
@@ -205,9 +199,7 @@ const CalenderApp = () => {
                 ? "#9FD19F"
                 : "#D95B30",
             name: res?.name,
-          };
-          arr.push(obj);
-        });
+          }));
       }
       setData(arr);
     }
