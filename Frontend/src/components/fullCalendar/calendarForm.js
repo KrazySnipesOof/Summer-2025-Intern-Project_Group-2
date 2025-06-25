@@ -25,7 +25,10 @@ const CalenderApp = () => {
   const [info, setInfo] = useState({});
   const [idmodal, setIdModal] = useState(0);
   const [filterData, setFilterData] = useState(null);
-  const [activeView, setActiveView] = useState(null);
+  const [activeView, setActiveView] = useState("timeGridWeek"); //initialize with "timeGridWeek", same as initialViewAdd commentMore actions
+
+  // holds currently visible date range of calendar (ISO strings)
+  //const [dateRange, setDateRange] = useState({ start: null, end: null });
 
   const handlemodalcls = () => {
     setShowEvent(false);
