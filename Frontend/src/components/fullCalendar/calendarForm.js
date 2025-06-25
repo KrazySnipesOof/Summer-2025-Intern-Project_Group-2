@@ -56,7 +56,7 @@ const CalenderApp = () => {
   const getDetails = async (start = null, end = null) => { //set start and end values to null
     const resp = await bookingService.bookingList(start && end ? { start, end } : {});
     if (resp.status == 200) {
-      const response = resp?.data?.data[0]?.data;
+      const response = resp?.data?.data;
       let arr = [];
       if (response.length > 0) {
         response.map((res) => {
