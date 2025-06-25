@@ -176,7 +176,7 @@ const EditBookings = () => {
     const time = moment(time1).format("hh:mm:A");
     setSelectTime(time);
     setIncomingTime(false);
-    if (Dateselect != "") {
+    if (Dateselect !== "") {
       const mergedDateTime = moment(`${Dateselect} ${time}`, "ll hh:mm:A");
       const mergedDateTimeString = mergedDateTime.format(
         "ddd MMM DD YYYY hh:mm:A:ss [GMT]ZZ (z)"
@@ -190,7 +190,7 @@ const EditBookings = () => {
 
   const getUser = async () => {
     const response = await userServices.GetUserByID(userID);
-    if (response.success == true) {
+    if (response.success === true) {
       setPublicKey(response?.data?.publicKey);
     } else {
       console.log("error");
@@ -199,7 +199,7 @@ const EditBookings = () => {
 
   const getClasses = async () => {
     const response = await classServices.getClassList();
-    if (response?.data?.success == true) {
+    if (response?.data?.success === true) {
       const filteredClasses = response?.data?.data?.filter((item) => {
         const currentDate = new Date();
         if (item?.isReoccurring) {
@@ -229,7 +229,7 @@ const EditBookings = () => {
     setIsLoading(true);
     if (reduxToken) {
       const response = await calenderService?.getSchedule(reduxToken);
-      if (response?.status == 200) {
+      if (response?.status === 200) {
         let data1 = response?.data?.data[0]?.scheduledData;
         setSchedule(data1);
         setIsLoading(false);
@@ -241,7 +241,7 @@ const EditBookings = () => {
 
   const getServicesSetting = async (reduxToken) => {
     const response = await bookingService?.getServicesSetting(reduxToken);
-    if (response?.status == 200) {
+    if (response?.status === 200) {
       const service = response?.data?.data[0]?.service;
       const selectedService = service?.map((item) => {
         return item?.serviceId;
@@ -467,7 +467,7 @@ const EditBookings = () => {
       isValid = false;
       err["email"] = "Please enter a valid email address";
     }
-    if (showDate == false) {
+    if (showDate === false) {
       if (!Dateselect) {
         err["Dateselect"] = "Date is required";
         isValid = false;
@@ -482,7 +482,7 @@ const EditBookings = () => {
       if (!obj.servicePrice) {
         isValid = false;
         err["servicePrice"] = "Price is required";
-      } else if (obj.servicePrice?.trim() == 0) {
+      } else if (obj.servicePrice?.trim() === 0) {
         err["servicePrice"] = "Price shoud be greater than 0";
         isValid = false;
       } else if (!obj.servicePrice?.trim().match(num2)) {
@@ -540,14 +540,14 @@ const EditBookings = () => {
       servicePrice: paidPrice ? paidPrice : price,
       paymentType: selectedPaymentOption?.value,
       scheduleTime:
-        startDateTime && startDateTime != getData.startDateTime
+        startDateTime && startDateTime !== getData.startDateTime
           ? startDateTime
           : formatDate
           ? formatDate
           : "null",
       prevSchedule: getData.startDateTime,
       scheduleexist:
-        startDateTime == undefined ? getData.scheduleexist : isExist,
+        startDateTime === undefined ? getData.scheduleexist : isExist,
     };
     if (Validation()) {
       if (reduxToken) {
@@ -558,17 +558,17 @@ const EditBookings = () => {
         } else {
           response = await bookingService.editClassBooking(id, obj);
         }
-        if (response.status == 200) {
+        if (response.status === 200) {
           createNotification("success", response?.data?.message);
           setTimeout(() => {
             setIsLoading(false);
             navigate("/booking");
           }, 3000);
-        } else if (response?.status == 400) {
+        } else if (response?.status === 400) {
           console.log(response, "++++res");
           createNotification("error", "Schedule is already booked");
           setIsLoading(false);
-        } else if (response.response == "Request failed with status code 500") {
+        } else if (response.response === "Request failed with status code 500") {
           createNotification("error", "Something went wrong");
           setIsLoading(false);
         } else {
@@ -586,7 +586,7 @@ const EditBookings = () => {
   }, []);
   const getBooking = async () => {
     const response = await bookingService.singleBooking(id);
-    if (response?.status == 200) {
+    if (response?.status === 200) {
       setGetData(response?.data?.data);
       setShowDate(response?.data?.data?.scheduleexist);
       setIncomingDate(response?.data?.data?.scheduleexist);
@@ -641,11 +641,11 @@ const EditBookings = () => {
         moment(response?.data?.data?.startDateTime).format("hh:mm:A")
       );
       const paymentType = paymentoptions.filter(
-        (item) => item.value == response?.data?.data?.paymentType
+        (item) => item.value === response?.data?.data?.paymentType
       );
       setSelectedPaymentOption(paymentType[0]);
       const bookingType = bookingoptions.filter(
-        (item) => item.value == response?.data?.data?.bookingType
+        (item) => item.value === response?.data?.data?.bookingType
       );
       setSelectedOption(bookingType);
       setPrice(response?.data?.data?.servicePrice);
@@ -947,7 +947,7 @@ const EditBookings = () => {
                             ""
                           )}
                           {showDate ? (
-                            getData?.show == false ? (
+                            getData?.show === false ? (
                               <Col xs={12}>
                                 <Form.Group className="mb-3">
                                   <Form.Label>Time & Date</Form.Label>
