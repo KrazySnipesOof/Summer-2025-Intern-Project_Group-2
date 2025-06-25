@@ -77,7 +77,7 @@ const CheckoutForm = ({
         last4Digits: last4Digits,
       });
 
-      if (response.status == "200") {
+      if (response.status === "200") {
         let bookingPayment;
         if (service?.length > 0) {
           bookingPayment = await axios.post(
@@ -100,7 +100,6 @@ const CheckoutForm = ({
               paymentMethodId: response?.data?.paymentMethodId,
               customerId: response?.data?.customerId,
               totalPrice: totalPrice,
-              numberOfSeats: numberOfSeats,
             }
           );
         } else if (cartProducts?.length > 0) {
@@ -124,10 +123,10 @@ const CheckoutForm = ({
         }
 
         if (
-          bookingPayment.status == 200 &&
+          bookingPayment.status === 200 &&
           bookingPayment?.data?.clientSecret
         ) {
-          if (bookingPayment?.data?.success == true) {
+          if (bookingPayment?.data?.success === true) {
             handlePyment(bookingPayment?.data?.price);
             navigate("/payment-success");
           } else {
