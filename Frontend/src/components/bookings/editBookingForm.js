@@ -57,8 +57,14 @@ const EditBookings = () => {
   const paymentoptions = [
     { value: "UnPaid", label: "UNPAID" },
     { value: "Paid", label: "PAID" },
+    { value: "GooglePay", label: "Google pay" },
+    { value: "ApplePay", label: "Apple pay" },
+    { value: "Paypal", label: "Paypal" },
+    { value: "Zelle", label: "Zelle" },
+    { value: "CashApp", label: "Cash App" },
+    { value: "Venmo", label: "Venmo" },
     { value: "Cash", label: "Cash" },
-    { value: "CreditCard", label: "CreditCard" },
+    { value: "CreditCard", label: "Credit Card" },
   ];
   const bookingoptions = [
     { value: "self", label: "Self" },
