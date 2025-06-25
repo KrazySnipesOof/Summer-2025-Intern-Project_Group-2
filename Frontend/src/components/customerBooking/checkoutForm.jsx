@@ -38,8 +38,28 @@ const CheckoutForm = ({
 
   async function submitHandler(event) {
     event.preventDefault();
-    const res = await stripe.createToken(elements.getElement(CardElement));
     setIsLoading(true);
+    
+    const res = await stripe.createToken(elements.getElement(CardElement));
+
+    //Added: Log the response for debuggingAdd commentMore actions
+    console.log("Stripe createToken response:", res);
+
+    //Added: Check if an error occurred. If so, send error message and stop processing
+    if (res.error) {
+      createNotification("warning", res.error.message || "Card details are invalid");
+      setIsLoading(false);  //set to false
+      return;               //exit to stop further execution
+    }
+
+    //Added: Check if Stripe generated a token, if not send notification and stop execution
+    if (!res.token) {
+      console.error("Stripe token was not returned:", res); //log the condition for debugging
+      createNotification("warning", "Card could not be tokenized. Please check your information and try again.");
+      setIsLoading(false);  //set to false
+      return;               //exit to stop further execution
+    }
+    
     const token = res?.token?.id;
     const cardId = res?.token?.card?.id;
     const month = res?.token?.card?.exp_month;
