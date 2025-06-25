@@ -598,7 +598,7 @@ const ProductInventory = () => {
                               </Col>
                               <Col className="p-0">
                                 <Form.Group className="mb-3">
-                                  <small>Stock</small>
+                                  <small>In Stock</small>
                                   <Form.Control
                                     type="number"
                                     placeholder="#"
