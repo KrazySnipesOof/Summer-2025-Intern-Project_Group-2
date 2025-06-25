@@ -112,7 +112,7 @@ console.log(schedule,"LLLLLLLLLLLLLLLLLLLLL")
                     <BsCheckCircleFill />
                   </span>
                   <div className="bk-title">
-                    <h2>Appintment Booked!</h2>
+                    <h2>Appointment Booked!</h2>
                     <h3>you will receive a confirmation mail shortly.</h3>
                   </div>
                 </div>
