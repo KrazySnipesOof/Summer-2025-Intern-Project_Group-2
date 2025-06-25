@@ -55,7 +55,7 @@ const CalenderApp = () => {
 
   const getDetails = async (start = null, end = null) => { //set start and end values to null
     const resp = await bookingService.bookingList(start && end ? { start, end } : {});
-    if (resp.status == 200) {
+    if (resp.status === 200) {
       const response = resp?.data?.data;
       let arr = [];
       if (response.length > 0) {
@@ -78,17 +78,17 @@ const CalenderApp = () => {
               .utc()
               .format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"),
             borderColor:
-              activeView == "listMonth" || activeView == "dayGridMonth"
+              activeView === "listMonth" || activeView === "dayGridMonth"
                 ? res?.eventColor || "#CCCCCC"  //default gray color
                 : "#00000040",
             textColor:
-              res?.bookingStatus == "Cancelled"
+              res?.bookingStatus === "Cancelled"
                 ? "#777981"
                 : res?.show
                 ? "#2F3033"
                 : "#FFFFFF",
             color:
-              res?.bookingStatus == "Cancelled"
+              res?.bookingStatus === "Cancelled"
                 ? "#BCBFC7"
                 : res?.show
                 ? "#9FD19F"
