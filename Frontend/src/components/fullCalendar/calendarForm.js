@@ -25,10 +25,10 @@ const CalenderApp = () => {
   const [info, setInfo] = useState({});
   const [idmodal, setIdModal] = useState(0);
   const [filterData, setFilterData] = useState(null);
-  const [activeView, setActiveView] = useState("timeGridWeek"); //initialize with "timeGridWeek", same as initialViewAdd commentMore actions
-
-  // holds currently visible date range of calendar (ISO strings)
-  //const [dateRange, setDateRange] = useState({ start: null, end: null });
+  const [activeView, setActiveView] = useState("timeGridWeek"); //initialize with "timeGridWeek", to match initialView value
+  
+  // holds currently visible date range of calendar
+  const [dateRange, setDateRange] = useState({ start: null, end: null });
 
   const handlemodalcls = () => {
     setShowEvent(false);
@@ -45,7 +45,7 @@ const CalenderApp = () => {
       startTime.add(duration);
     } else {
       servicesOrClass.forEach((service) => {
-        const { hours, minutes } = service?.serviceTime;
+        const { hours = 0, minutes = 0} = service?.serviceTime || {};
         startTime.add(hours, "hours").add(minutes, "minutes");
       });
     }
@@ -53,15 +53,16 @@ const CalenderApp = () => {
     return startTime;
   };
 
-  const getDetails = async () => {
-    const resp = await bookingService.bookingList();
+  const getDetails = async (start = null, end = null) => { //set start and end values to null
+    const resp = await bookingService.bookingList(start && end ? { start, end } : {});
     if (resp.status == 200) {
       const response = resp?.data?.data[0]?.data;
       let arr = [];
       if (response.length > 0) {
         response.map((res) => {
           let obj = {
-            title: res?.service?.map((serv) => serv?.service),
+            title: res?.service?.map((serv) => serv?.service).join(", ")
+              || "",
             groupId: res?._id,
             start: moment(
               res?.startDateTime,
@@ -78,7 +79,7 @@ const CalenderApp = () => {
               .format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"),
             borderColor:
               activeView == "listMonth" || activeView == "dayGridMonth"
-                ? res?.eventColor
+                ? res?.eventColor || "#CCCCCC"  //default gray color
                 : "#00000040",
             textColor:
               res?.bookingStatus == "Cancelled"
@@ -100,10 +101,22 @@ const CalenderApp = () => {
       setData(arr);
     }
   };
+  //Effect to fetch bookings when view or date range changes
   useEffect(() => {
-    getDetails();
-  }, [activeView]);
+    //getDetails();
+    if (dateRange.start && dateRange.end) {
+      getDetails(dateRange.start, dateRange.end); //Fetch based on visible date range
+    } else {
+      getDetails(); //Initial load fallback
+    }
+  }, [activeView, dateRange]); //Re-fetch if view or visible range changes
 
+  //updated to capture view and visible date range
+  const onDatesSet = (info) => {
+    setActiveView(info.view.type); //Track current view
+    setDateRange({ start: info.startStr, end: info.endStr }); //Track visible calendar date range
+  };
+  
   const datepickerRef = useRef(null);
 
   useEffect(() => {
@@ -307,9 +320,8 @@ const CalenderApp = () => {
               },
             },
           }}
-          datesSet={(info) => {
-            setActiveView(info?.view?.type);
-          }}
+          //Callback to set view + date range
+          datesSet={onDatesSet}
           eventClick={handleEventClick}
           events={data}
           goToDate={startDate}
