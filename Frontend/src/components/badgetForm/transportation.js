@@ -1,12 +1,9 @@
-import React, { useEffect } from "react";
+//import React, { useEffect } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import ReactTooltip from "react-tooltip";
 import { MdOutlineReportGmailerrorred } from "react-icons/md";
 
 const Transportation = (props) => {
-  useEffect(() => {
-    window.scroll(0, 0);
-  }, []);
   return (
     <>
       <div className="dashboard-wrapper">
