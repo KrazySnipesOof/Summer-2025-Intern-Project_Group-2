@@ -3,6 +3,13 @@ import { Button, Table} from "react-bootstrap";
 import { BiEdit } from "react-icons/bi";
 import CsvLink from "react-csv-export";
 
+function formatNumber(value) {
+  return Number(value).toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+}
+
 const Summary = (props) => {
   const CalculateSummary = ({
     discretionary,
@@ -91,7 +98,7 @@ const Summary = (props) => {
       }
 
       for (const [key, value] of Object.entries(transportation)) {
-        if(key == "LicenseRegistration")
+        if(key === "LicenseRegistration")
         {
           totalMonthlyTransportation =
           Number(totalMonthlyTransportation ? totalMonthlyTransportation : 0) +
@@ -147,62 +154,62 @@ const Summary = (props) => {
       { Name: "Housing:", value: "" },
       {
         Name: "Mortgage/Rent",
-        value: `$ ${props.housing.mortgage ? props.housing.mortgage : 0}`,
+        value: `$ ${formatNumber(props.housing.mortgage ? props.housing.mortgage : 0)}`,
       },
       {
         Name: "Property Tax",
-        value: `$ ${props.housing.propertyTax ? props.housing.propertyTax : 0}`,
+        value: `$ ${formatNumber(props.housing.propertyTax ? props.housing.propertyTax : 0)}`,
       },
       {
         Name: "Home Maintenance",
-        value: `$ ${
-          props.housing.homeMaintenance ? props.housing.homeMaintenance : 0
-        }`,
+        value: `$ ${formatNumber
+          (props.housing.homeMaintenance ? props.housing.homeMaintenance : 0
+        )}`,
       },
       {
         Name: "Renters/Homeower's Insurance",
-        value: `$ ${
-          props.housing.homeowerInsurance ? props.housing.homeowerInsurance : 0
+        value: `$ ${formatNumber
+          (props.housing.homeowerInsurance ? props.housing.homeowerInsurance : 0)
         }`,
       },
       {
         Name: "Electric",
-        value: `$ ${props.housing.electric ? props.housing.electric : 0}`,
+        value: `$ ${formatNumber(props.housing.electric ? props.housing.electric : 0)}`,
       },
       {
         Name: "Gas",
-        value: `$ ${props.housing.gas ? props.housing.gas : 0}`,
+        value: `$ ${formatNumber(props.housing.gas ? props.housing.gas : 0)}`,
       },
       {
         Name: "Water",
-        value: `$ ${props.housing.water ? props.housing.water : 0}`,
+        value: `$ ${formatNumber(props.housing.water ? props.housing.water : 0)}`,
       },
       {
         Name: "Cable",
-        value: `$ ${props.housing.cable ? props.housing.cable : 0}`,
+        value: `$ ${formatNumber(props.housing.cable ? props.housing.cable : 0)}`,
       },
       {
         Name: "talephone",
-        value: `$ ${props.housing.talephone ? props.housing.talephone : 0}`,
+        value: `$ ${formatNumber(props.housing.talephone ? props.housing.talephone : 0)}`,
       },
       {
         Name: "Others",
-        value: `$ ${props.housing.other ? props.housing.other : 0}`,
+        value: `$ ${formatNumber(props.housing.other ? props.housing.other : 0)}`,
       },
       {
         Name: "Total Monthly Expenses",
-        value: `$ ${
+        value: `$ ${formatNumber(
           summaryObject && summaryObject.totalMonthlyHousing
             ? summaryObject.totalMonthlyHousing
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Total Yearly Expenses",
-        value: `$ ${
+        value: `$ ${formatNumber(
           summaryObject && summaryObject.totalAnnualHousing
             ? summaryObject.totalAnnualHousing
-            : 0
+            : 0)
         }`,
       },
       { Name: "", value: "" },
@@ -212,72 +219,72 @@ const Summary = (props) => {
       },
       {
         Name: "Auto Payment(s)",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.transportation.autoPayment
             ? props.transportation.autoPayment
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Auto Insurance",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.transportation.autoInsurance
             ? props.transportation.autoInsurance
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Gas",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.transportation.transportationGas
             ? props.transportation.transportationGas
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Maintenance",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.transportation.maintenance
             ? props.transportation.maintenance
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "License/Registration",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.transportation.LicenseRegistration
             ? (props.transportation.LicenseRegistration / 12).toFixed(2)
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Parking/Toll/Bus/Train",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.transportation.ParkingTollBusTrain
             ? props.transportation.ParkingTollBusTrain
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Others",
-        value: `$ ${
-          props.transportation.Others ? props.transportation.Others : 0
+        value: `$ ${formatNumber(
+          props.transportation.Others ? props.transportation.Others : 0)
         }`,
       },
       {
         Name: "Total Monthly Expenses",
-        value: `$ ${
+        value: `$ ${formatNumber(
           summaryObject && summaryObject.totalMonthlyTransportation
             ? summaryObject.totalMonthlyTransportation.toFixed(2)
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Total Yearly Expenses",
-        value: `$ ${
+        value: `$ ${formatNumber(
           summaryObject && summaryObject.totalAnnualTransportation
             ? summaryObject.totalAnnualTransportation.toFixed(2)
-            : 0
+            : 0)
         }`,
       },
       { Name: "", value: "" },
@@ -287,74 +294,73 @@ const Summary = (props) => {
       },
       {
         Name: "Groceries",
-        value: `$ ${props.houseHold.groceries ? props.houseHold.groceries : 0}`,
+        value: `$ ${formatNumber(props.houseHold.groceries ? props.houseHold.groceries : 0)}`,
       },
       {
         Name: "Personal Care",
-        value: `$ ${
-          props.houseHold.personalCare ? props.houseHold.personalCare : 0
+        value: `$ ${formatNumber(
+          props.houseHold.personalCare ? props.houseHold.personalCare : 0)
         }`,
       },
       {
         Name: "Clothing/Dry Cleaning",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.houseHold.ClothingDryCleaning
             ? props.houseHold.ClothingDryCleaning
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Domestic Help",
-        value: `$ ${
-          props.houseHold.domesticHelp ? props.houseHold.domesticHelp : 0
+        value: `$ ${formatNumber(
+          props.houseHold.domesticHelp ? props.houseHold.domesticHelp : 0)
         }`,
       },
       {
         Name: "Professional Dues",
-        value: `$ ${
-          props.houseHold.professionaldues
+        value: `$ ${formatNumber(props.houseHold.professionaldues
             ? props.houseHold.professionaldues
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Dependent/Child Care",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.houseHold.dependentChildCare
             ? props.houseHold.dependentChildCare
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Education/School",
-        value: `$ ${
-          props.houseHold.educationSchool ? props.houseHold.educationSchool : 0
+        value: `$ ${formatNumber(
+          props.houseHold.educationSchool ? props.houseHold.educationSchool : 0)
         }`,
       },
       {
         Name: "Cash Allowances",
-        value: `$ ${
-          props.houseHold.cashAllowances ? props.houseHold.cashAllowances : 0
+        value: `$ ${formatNumber(
+          props.houseHold.cashAllowances ? props.houseHold.cashAllowances : 0)
         }`,
       },
       {
         Name: "Others",
-        value: `$ ${props.houseHold.others ? props.houseHold.others : 0}`,
+        value: `$ ${formatNumber(props.houseHold.others ? props.houseHold.others : 0)}`,
       },
       {
         Name: "Total Monthly Expenses",
-        value: `$ ${
+        value: `$ ${formatNumber(
           summaryObject && summaryObject.totalMonthlyHouseHold
             ? summaryObject.totalMonthlyHouseHold
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Total Yearly Expenses",
-        value: `$ ${
+        value: `$ ${formatNumber(
           summaryObject && summaryObject.totalAnnualHouseHold
             ? summaryObject.totalAnnualHouseHold
-            : 0
+            : 0)
         }`,
       },
       { Name: "", value: "" },
@@ -364,46 +370,46 @@ const Summary = (props) => {
       },
       {
         Name: "Credit Card Payments",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.loanPayments.creditCardPayment
             ? props.loanPayments.creditCardPayment
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Other Loan Payments",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.loanPayments.otherLoanPayment
             ? props.loanPayments.otherLoanPayment
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Saving/Investing",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.loanPayments.savingInvesting
             ? props.loanPayments.savingInvesting
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Others",
-        value: `$ ${props.loanPayments.others ? props.loanPayments.others : 0}`,
+        value: `$ ${formatNumber(props.loanPayments.others ? props.loanPayments.others : 0)}`,
       },
       {
         Name: "Total Monthly Expenses",
-        value: `$ ${
+        value: `$ ${formatNumber(
           summaryObject && summaryObject.totalMonthlyLoanPayments
             ? summaryObject.totalMonthlyLoanPayments
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Total Yearly Expenses",
-        value: `$ ${
+        value: `$ ${formatNumber(
           summaryObject && summaryObject.totalAnnualLoanPayments
             ? summaryObject.totalAnnualLoanPayments
-            : 0
+            : 0)
         }`,
       },
       { Name: "", value: "" },
@@ -413,18 +419,18 @@ const Summary = (props) => {
       },
       {
         Name: "Health Insurance",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.personalInsurance.healthInsurance
             ? props.personalInsurance.healthInsurance
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Life Insurance",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.personalInsurance.lifeInsurance
             ? props.personalInsurance.lifeInsurance
-            : 0
+            : 0)
         }`,
       },
       {
@@ -433,48 +439,48 @@ const Summary = (props) => {
       },
       {
         Name: "Disability Income Insurance",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.personalInsurance.disabilityIncomeInsurance
             ? props.personalInsurance.disabilityIncomeInsurance
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Long-Term Health Care Insurance",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.personalInsurance.healthCareInsurance
             ? props.personalInsurance.healthCareInsurance
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Medical/Dental/Vision/Drug",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.personalInsurance.medicalDentalVisionDrug
             ? props.personalInsurance.medicalDentalVisionDrug
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Others",
-        value: `$ ${
-          props.personalInsurance.others ? props.personalInsurance.others : 0
+        value: `$ ${formatNumber(
+          props.personalInsurance.others ? props.personalInsurance.others : 0)
         }`,
       },
       {
         Name: "Total Monthly Expenses",
-        value: `$ ${
+        value: `$ ${formatNumber(
           summaryObject && summaryObject.totalMonthlyPersonalInsurance
             ? summaryObject.totalMonthlyPersonalInsurance
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Total Yearly Expenses",
-        value: `$ ${
+        value: `$ ${formatNumber(
           summaryObject && summaryObject.totalAnnualPersonalInsurance
             ? summaryObject.totalAnnualPersonalInsurance
-            : 0
+            : 0)
         }`,
       },
       { Name: "", value: "" },
@@ -484,68 +490,68 @@ const Summary = (props) => {
       },
       {
         Name: "Dining Out",
-        value: `$ ${
-          props.discretionary.diningOut ? props.discretionary.diningOut : 0
+        value: `$ ${formatNumber(
+          props.discretionary.diningOut ? props.discretionary.diningOut : 0)
         }`,
       },
       {
         Name: "Recreation/Club Dues",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.discretionary.recreationClubDues
             ? props.discretionary.recreationClubDues
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Movies/Sporting Events",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.discretionary.moviesSportingEvents
             ? props.discretionary.moviesSportingEvents
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Hobbies",
-        value: `$ ${
-          props.discretionary.hobbies ? props.discretionary.hobbies : 0
+        value: `$ ${formatNumber(
+          props.discretionary.hobbies ? props.discretionary.hobbies : 0)
         }`,
       },
       {
         Name: "Vacation/Travel",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.discretionary.vacationTravel
             ? props.discretionary.vacationTravel
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Gift/Contributions",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.discretionary.giftContributions
             ? props.discretionary.giftContributions
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Others",
-        value: `$ ${
-          props.discretionary.others ? props.discretionary.others : 0
+        value: `$ ${formatNumber(
+          props.discretionary.others ? props.discretionary.others : 0)
         }`,
       },
       {
         Name: "Total Monthly Expenses",
-        value: `$ ${
+        value: `$ ${formatNumber(
           summaryObject && summaryObject.totalMonthlyDiscretionary
             ? summaryObject.totalMonthlyDiscretionary
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Total Yearly Expenses",
-        value: `$ ${
+        value: `$ ${formatNumber(
           summaryObject && summaryObject.totalAnnualDiscretionary
             ? summaryObject.totalAnnualDiscretionary
-            : 0
+            : 0)
         }`,
       },
       { Name: "", value: "" },
@@ -555,107 +561,100 @@ const Summary = (props) => {
       },
       {
         Name: "Rent",
-        value: `$ ${
-          props.companyExpenses.rent ? props.companyExpenses.rent : 0
+        value: `$ ${formatNumber(
+          props.companyExpenses.rent ? props.companyExpenses.rent : 0)
         }`,
       },
       {
         Name: "Gas",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.companyExpenses.companyGas
             ? props.companyExpenses.companyGas
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Water",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.companyExpenses.companyWater
             ? props.companyExpenses.companyWater
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Electricity",
-        value: `$ ${
+        value: `$ ${formatNumber(
           props.companyExpenses.electricity
             ? props.companyExpenses.electricity
-            : 0
+            : 0)
         }`,
       },
       {
         Name: "Cellular",
-        value: `$ ${
-          props.companyExpenses.cellular ? props.companyExpenses.cellular : 0
+        value: `$ ${formatNumber(
+          props.companyExpenses.cellular ? props.companyExpenses.cellular : 0)
         }`,
       },
       {
         Name: "Internet",
-        value: `$ ${
-          props.companyExpenses.internet ? props.companyExpenses.internet : 0
+        value: `$ ${formatNumber(
+          props.companyExpenses.internet ? props.companyExpenses.internet : 0)
         }`,
       },
       {
         Name: "Marketing",
-        value: `$ ${
-          props.companyExpenses.marketing ? props.companyExpenses.marketing : 0
+        value: `$ ${formatNumber(
+          props.companyExpenses.marketing ? props.companyExpenses.marketing : 0)
         }`,
       },
       {
         Name: "Total Monthly Company Expenses",
-        value: `$ ${
-          summaryObject && summaryObject.totalMonthlyCompanyExpenses
-            ? summaryObject.totalMonthlyCompanyExpenses
-            : 0
+        value: `$ ${formatNumber(
+          summaryObject?.totalMonthlyCompanyExpenses
+            ?? 0)
         }`,
       },
       {
         Name: "Total Yearly Company Expenses",
-        value: `$ ${
-          summaryObject && summaryObject.totalAnnualCompanyExpenses
-            ? summaryObject.totalAnnualCompanyExpenses
-            : 0
+        value: `$ ${formatNumber(
+          summaryObject?.totalAnnualCompanyExpenses
+            ?? 0)
         }`,
       },
       { Name: "", value: "" },
       {
         Name: "Total Monthly Personal Expenses",
-        value: `$ ${
-          summaryObject && summaryObject.netMonthlyExpense
-            ? summaryObject.netMonthlyExpense.toFixed(2)
-            : 0
+        value: `$ ${formatNumber(
+          summaryObject?.netMonthlyExpense
+            ?? 0)
         }`,
       },
       {
         Name: "Total Yearly Personal Expenses",
-        value: `$ ${
-          summaryObject && summaryObject.netAnnualExpense
-            ? summaryObject.netAnnualExpense.toFixed(2)
-            : 0
+        value: `$ ${formatNumber(
+          summaryObject?.netAnnualExpense
+            ?? 0)
         }`,
       },
       {
         Name: "Total Monthly Company Expenses",
-        value: `$ ${
-          summaryObject && summaryObject.totalMonthlyCompanyExpenses
-            ? summaryObject.totalMonthlyCompanyExpenses.toFixed(2)
-            : 0
+        value: `$ ${formatNumber(
+          summaryObject?.totalMonthlyCompanyExpenses
+            ?? 0)
         }`,
       },
       {
         Name: "Total Yearly Company Expenses",
-        value: `$ ${
-          summaryObject && summaryObject.totalAnnualCompanyExpenses
-            ? summaryObject.totalAnnualCompanyExpenses.toFixed(2)
-            : 0
+        value: `$ ${formatNumber(
+          summaryObject?.totalAnnualCompanyExpenses
+            ?? 0)
         }`,
       },
       {
         Name: "Gross Total",
-        value: `$ ${
-          summaryObject && summaryObject.netYearly
-            ? summaryObject.netYearly.toFixed(2)
-            : null
+        value: `$ ${formatNumber(
+          summaryObject?.netYearly
+            ?? 0)
         }`,
       },
     ];
@@ -671,9 +670,8 @@ const Summary = (props) => {
                 <span className="value">
                   {" "}
                   $
-                  {summaryObject && summaryObject.netYearly
-                    ? summaryObject.netYearly
-                    : null}
+                  {formatNumber(summaryObject?.netYearly
+                    ?? 0)}
                 </span>
               </div>
             </div>
@@ -706,36 +704,36 @@ const Summary = (props) => {
                             <td>Mortgage/Rent:</td>
                             <td>
                               $
-                              {props.housing.mortgage
+                              {formatNumber(props.housing.mortgage
                                 ? props.housing.mortgage
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Property Tax:</td>
                             <td>
                               $
-                              {props.housing.propertyTax
+                              {formatNumber(props.housing.propertyTax
                                 ? props.housing.propertyTax
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Home Maintenance: </td>
                             <td>
                               $
-                              {props.housing.homeMaintenance
+                              {formatNumber(props.housing.homeMaintenance
                                 ? props.housing.homeMaintenance
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Renters/Homeowners Insurance:</td>
                             <td>
                               $
-                              {props.housing.homeowerInsurance
+                              {formatNumber(props.housing.homeowerInsurance
                                 ? props.housing.homeowerInsurance
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                         </tbody>
@@ -751,42 +749,42 @@ const Summary = (props) => {
                             <td>Electric:</td>
                             <td>
                               $
-                              {props.housing.electric
+                              {formatNumber(props.housing.electric
                                 ? props.housing.electric
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Gas:</td>
                             <td>
-                              ${props.housing.gas ? props.housing.gas : 0}
+                              ${formatNumber(props.housing.gas ? props.housing.gas : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Water: </td>
                             <td>
-                              ${props.housing.water ? props.housing.water : 0}
+                              ${formatNumber(props.housing.water ? props.housing.water : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Cable:</td>
                             <td>
-                              ${props.housing.cable ? props.housing.cable : 0}
+                              ${formatNumber(props.housing.cable ? props.housing.cable : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Telephone:</td>
                             <td>
                               $
-                              {props.housing.talephone
+                              {formatNumber(props.housing.talephone
                                 ? props.housing.talephone
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Others:</td>
                             <td>
-                              ${props.housing.other ? props.housing.other : 0}
+                              ${formatNumber(props.housing.other ? props.housing.other : 0)}
                             </td>
                           </tr>
                         </tbody>
@@ -795,19 +793,16 @@ const Summary = (props) => {
                             <td>Total Monthly Expenses </td>
                             <td>
                               $
-                              {summaryObject &&
-                              summaryObject.totalMonthlyHousing
-                                ? summaryObject.totalMonthlyHousing
-                                : 0}
+                              {formatNumber(summaryObject?.totalMonthlyHousing
+                                ?? 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Total Yearly Expenses</td>
                             <td>
                               $
-                              {summaryObject && summaryObject.totalAnnualHousing
-                                ? summaryObject.totalAnnualHousing
-                                : 0}
+                              {formatNumber(summaryObject?.totalAnnualHousing
+                                ?? 0)}
                             </td>
                           </tr>
                         </tfoot>
@@ -842,81 +837,81 @@ const Summary = (props) => {
                             <td>Groceries:</td>
                             <td>
                               $
-                              {props.houseHold.groceries
+                              {formatNumber(props.houseHold.groceries
                                 ? props.houseHold.groceries
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Personal Care:</td>
                             <td>
                               $
-                              {props.houseHold.personalCare
+                              {formatNumber(props.houseHold.personalCare
                                 ? props.houseHold.personalCare
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Clothing/Dry Cleaning: </td>
                             <td>
                               $
-                              {props.houseHold.ClothingDryCleaning
+                              {formatNumber(props.houseHold.ClothingDryCleaning
                                 ? props.houseHold.ClothingDryCleaning
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Domestic Help: </td>
                             <td>
                               $
-                              {props.houseHold.domesticHelp
+                              {formatNumber(props.houseHold.domesticHelp
                                 ? props.houseHold.domesticHelp
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Professional Dues: </td>
                             <td>
                               $
-                              {props.houseHold.professionaldues
+                              {formatNumber(props.houseHold.professionaldues
                                 ? props.houseHold.professionaldues
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Dependent/Child Care: </td>
                             <td>
                               $
-                              {props.houseHold.dependentChildCare
+                              {formatNumber(props.houseHold.dependentChildCare
                                 ? props.houseHold.dependentChildCare
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Education/School: </td>
                             <td>
                               $
-                              {props.houseHold.educationSchool
+                              {formatNumber(props.houseHold.educationSchool
                                 ? props.houseHold.educationSchool
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Cash Allowances: </td>
                             <td>
                               $
-                              {props.houseHold.cashAllowances
+                              {formatNumber(props.houseHold.cashAllowances
                                 ? props.houseHold.cashAllowances
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Others: </td>
                             <td>
                               $
-                              {props.houseHold.others
+                              {formatNumber(props.houseHold.others
                                 ? props.houseHold.others
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                         </tbody>
@@ -925,20 +920,16 @@ const Summary = (props) => {
                             <td>Total Monthly Expenses </td>
                             <td>
                               $
-                              {summaryObject &&
-                              summaryObject.totalMonthlyHouseHold
-                                ? summaryObject.totalMonthlyHouseHold
-                                : 0}
+                              {formatNumber(summaryObject?.totalMonthlyHouseHold
+                                ?? 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Total Yearly Expenses</td>
                             <td>
                               $
-                              {summaryObject &&
-                              summaryObject.totalAnnualHouseHold
-                                ? summaryObject.totalAnnualHouseHold
-                                : 0}
+                              {formatNumber(summaryObject?.totalAnnualHouseHold
+                                ?? 0)}
                             </td>
                           </tr>
                         </tfoot>
@@ -974,18 +965,18 @@ const Summary = (props) => {
                             <td>Health Insurance: </td>
                             <td>
                               $
-                              {props.personalInsurance.healthInsurance
+                              {formatNumber(props.personalInsurance.healthInsurance
                                 ? props.personalInsurance.healthInsurance
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Life Insurance:</td>
                             <td>
                               $
-                              {props.personalInsurance.lifeInsurance
+                              {formatNumber(props.personalInsurance.lifeInsurance
                                 ? props.personalInsurance.lifeInsurance
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                         </tbody>
@@ -1002,38 +993,38 @@ const Summary = (props) => {
                             <td>Disability Income Insurance: </td>
                             <td>
                               $
-                              {props.personalInsurance.disabilityIncomeInsurance
+                              {formatNumber(props.personalInsurance.disabilityIncomeInsurance
                                 ? props.personalInsurance
                                     .disabilityIncomeInsurance
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Long-Term Health Care Insurance: </td>
                             <td>
                               $
-                              {props.personalInsurance.healthCareInsurance
+                              {formatNumber(props.personalInsurance.healthCareInsurance
                                 ? props.personalInsurance.healthCareInsurance
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Medical/Dental/Vision/Drug: </td>
                             <td>
                               $
-                              {props.personalInsurance.medicalDentalVisionDrug
+                              {formatNumber(props.personalInsurance.medicalDentalVisionDrug
                                 ? props.personalInsurance
                                     .medicalDentalVisionDrug
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Others:</td>
                             <td>
                               $
-                              {props.personalInsurance.others
+                              {formatNumber(props.personalInsurance.others
                                 ? props.personalInsurance.others
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                         </tbody>
@@ -1042,20 +1033,16 @@ const Summary = (props) => {
                             <td>Total Monthly Expenses </td>
                             <td>
                               $
-                              {summaryObject &&
-                              summaryObject.totalMonthlyPersonalInsurance
-                                ? summaryObject.totalMonthlyPersonalInsurance
-                                : 0}
+                              {formatNumber(summaryObject?.totalMonthlyPersonalInsurance
+                                ?? 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Total Yearly Expenses</td>
                             <td>
                               $
-                              {summaryObject &&
-                              summaryObject.totalAnnualPersonalInsurance
-                                ? summaryObject.totalAnnualPersonalInsurance
-                                : 0}
+                              {formatNumber(summaryObject?.totalAnnualPersonalInsurance
+                                ?? 0)}
                             </td>
                           </tr>
                         </tfoot>
@@ -1092,63 +1079,63 @@ const Summary = (props) => {
                             <td>Auto Payment(s):</td>
                             <td>
                               $
-                              {props.transportation.autoPayment
+                              {formatNumber(props.transportation.autoPayment
                                 ? props.transportation.autoPayment
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Auto Insurance:</td>
                             <td>
                               $
-                              {props.transportation.autoInsurance
+                              {formatNumber(props.transportation.autoInsurance
                                 ? props.transportation.autoInsurance
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Gas: </td>
                             <td>
                               $
-                              {props.transportation.transportationGas
+                              {formatNumber(props.transportation.transportationGas
                                 ? props.transportation.transportationGas
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Maintenance: </td>
                             <td>
                               $
-                              {props.transportation.maintenance
+                              {formatNumber(props.transportation.maintenance
                                 ? props.transportation.maintenance
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>License/Registration:</td>
                             <td>
                               $
-                              {props.transportation.LicenseRegistration
+                              {formatNumber(props.transportation.LicenseRegistration
                                 ? props.transportation.LicenseRegistration / 12
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Parking/Toll/Bus/Train: </td>
                             <td>
                               $
-                              {props.transportation.ParkingTollBusTrain
+                              {formatNumber(props.transportation.ParkingTollBusTrain
                                 ? props.transportation.ParkingTollBusTrain
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Others: </td>
                             <td>
                               $
-                              {props.transportation.Others
+                              {formatNumber(props.transportation.Others
                                 ? props.transportation.Others
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                         </tbody>
@@ -1157,20 +1144,16 @@ const Summary = (props) => {
                             <td>Total Monthly Expenses </td>
                             <td>
                               $
-                              {summaryObject &&
-                              summaryObject.totalMonthlyTransportation
-                                ? summaryObject.totalMonthlyTransportation
-                                : 0}
+                              {formatNumber(summaryObject?.totalMonthlyTransportation
+                                ?? 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Total Yearly Expenses</td>
                             <td>
                               $
-                              {summaryObject &&
-                              summaryObject.totalAnnualTransportation
-                                ? summaryObject.totalAnnualTransportation
-                                : 0}
+                              {formatNumber(summaryObject?.totalAnnualTransportation
+                                ?? 0)}
                             </td>
                           </tr>
                         </tfoot>
@@ -1205,36 +1188,36 @@ const Summary = (props) => {
                             <td>Credit Card Payments:</td>
                             <td>
                               $
-                              {props.loanPayments.creditCardPayment
+                              {formatNumber(props.loanPayments.creditCardPayment
                                 ? props.loanPayments.creditCardPayment
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Other Loan Payments:</td>
                             <td>
                               $
-                              {props.loanPayments.otherLoanPayment
+                              {formatNumber(props.loanPayments.otherLoanPayment
                                 ? props.loanPayments.otherLoanPayment
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Saving/Investing: </td>
                             <td>
                               $
-                              {props.loanPayments.savingInvesting
+                              {formatNumber(props.loanPayments.savingInvesting
                                 ? props.loanPayments.savingInvesting
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Others: </td>
                             <td>
                               $
-                              {props.loanPayments.others
+                              {formatNumber(props.loanPayments.others
                                 ? props.loanPayments.others
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                         </tbody>
@@ -1243,20 +1226,16 @@ const Summary = (props) => {
                             <td>Total Monthly Expenses: </td>
                             <td>
                               $
-                              {summaryObject &&
-                              summaryObject.totalMonthlyLoanPayments
-                                ? summaryObject.totalMonthlyLoanPayments
-                                : 0}
+                              {formatNumber(summaryObject?.totalMonthlyLoanPayments
+                                ?? 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Total Yearly Expenses:</td>
                             <td>
                               $
-                              {summaryObject &&
-                              summaryObject.totalAnnualLoanPayments
-                                ? summaryObject.totalAnnualLoanPayments
-                                : 0}
+                              {formatNumber(summaryObject?.totalAnnualLoanPayments
+                                ?? 0)}
                             </td>
                           </tr>
                         </tfoot>
@@ -1292,63 +1271,63 @@ const Summary = (props) => {
                             <td>Dining Out:</td>
                             <td>
                               $
-                              {props.discretionary.diningOut
+                              {formatNumber(props.discretionary.diningOut
                                 ? props.discretionary.diningOut
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Recreation/Club Dues:</td>
                             <td>
                               $
-                              {props.discretionary.recreationClubDues
+                              {formatNumber(props.discretionary.recreationClubDues
                                 ? props.discretionary.recreationClubDues
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Movies/Sporting Events: </td>
                             <td>
                               $
-                              {props.discretionary.moviesSportingEvents
+                              {formatNumber(props.discretionary.moviesSportingEvents
                                 ? props.discretionary.moviesSportingEvents
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Hobbies:</td>
                             <td>
                               $
-                              {props.discretionary.hobbies
+                              {formatNumber(props.discretionary.hobbies
                                 ? props.discretionary.hobbies
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Vacation/Travel:</td>
                             <td>
                               $
-                              {props.discretionary.vacationTravel
+                              {formatNumber(props.discretionary.vacationTravel
                                 ? props.discretionary.vacationTravel
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Gift/Contributions:</td>
                             <td>
                               $
-                              {props.discretionary.giftContributions
+                              {formatNumber(props.discretionary.giftContributions
                                 ? props.discretionary.giftContributions
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Others:</td>
                             <td>
                               $
-                              {props.discretionary.others
+                              {formatNumber(props.discretionary.others
                                 ? props.discretionary.others
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                         </tbody>
@@ -1357,20 +1336,16 @@ const Summary = (props) => {
                             <td>Total Monthly Expenses </td>
                             <td>
                               $
-                              {summaryObject &&
-                              summaryObject.totalMonthlyDiscretionary
-                                ? summaryObject.totalMonthlyDiscretionary
-                                : 0}
+                              {formatNumber(summaryObject?.totalMonthlyDiscretionary
+                                ?? 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Total Yearly Expenses</td>
                             <td>
                               $
-                              {summaryObject &&
-                              summaryObject.totalAnnualDiscretionary
-                                ? summaryObject.totalAnnualDiscretionary
-                                : 0}
+                              {formatNumber(summaryObject?.totalAnnualDiscretionary
+                                ?? 0)}
                             </td>
                           </tr>
                         </tfoot>
@@ -1405,63 +1380,63 @@ const Summary = (props) => {
                             <td>Rent:</td>
                             <td>
                               $
-                              {props.companyExpenses.rent
+                              {formatNumber(props.companyExpenses.rent
                                 ? props.companyExpenses.rent
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Gas:</td>
                             <td>
                               $
-                              {props.companyExpenses.companyGas
+                              {formatNumber(props.companyExpenses.companyGas
                                 ? props.companyExpenses.companyGas
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Water: </td>
                             <td>
                               $
-                              {props.companyExpenses.companyWater
+                              {formatNumber(props.companyExpenses.companyWater
                                 ? props.companyExpenses.companyWater
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Electricity:</td>
                             <td>
                               $
-                              {props.companyExpenses.electricity
+                              {formatNumber(props.companyExpenses.electricity
                                 ? props.companyExpenses.electricity
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Cellular:</td>
                             <td>
                               $
-                              {props.companyExpenses.cellular
+                              {formatNumber(props.companyExpenses.cellular
                                 ? props.companyExpenses.cellular
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Internet:</td>
                             <td>
                               $
-                              {props.companyExpenses.internet
+                              {formatNumber(props.companyExpenses.internet
                                 ? props.companyExpenses.internet
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Marketing:</td>
                             <td>
                               $
-                              {props.companyExpenses.marketing
+                              {formatNumber(props.companyExpenses.marketing
                                 ? props.companyExpenses.marketing
-                                : 0}
+                                : 0)}
                             </td>
                           </tr>
                         </tbody>
@@ -1470,20 +1445,16 @@ const Summary = (props) => {
                             <td>Total Monthly Company Expenses </td>
                             <td>
                               $
-                              {summaryObject &&
-                              summaryObject.totalMonthlyCompanyExpenses
-                                ? summaryObject.totalMonthlyCompanyExpenses
-                                : 0}
+                              {formatNumber(summaryObject?.totalMonthlyCompanyExpenses
+                                ?? 0)}
                             </td>
                           </tr>
                           <tr>
                             <td>Total Yearly Company Expenses</td>
                             <td>
                               $
-                              {summaryObject &&
-                              summaryObject.totalAnnualCompanyExpenses
-                                ? summaryObject.totalAnnualCompanyExpenses
-                                : 0}
+                              {formatNumber(summaryObject?.totalAnnualCompanyExpenses
+                                ?? 0)}
                             </td>
                           </tr>
                         </tfoot>
@@ -1502,9 +1473,8 @@ const Summary = (props) => {
                     <td>
                       {" "}
                       $
-                      {summaryObject && summaryObject.netMonthlyExpense
-                        ? summaryObject.netMonthlyExpense.toFixed(2)
-                        : 0}
+                      {formatNumber(summaryObject?.netMonthlyExpense
+                        ?? 0)}
                     </td>
                   </tr>
                   <tr>
@@ -1512,9 +1482,8 @@ const Summary = (props) => {
                     <td>
                       {" "}
                       $
-                      {summaryObject && summaryObject.netAnnualExpense
-                        ? summaryObject.netAnnualExpense
-                        : 0}
+                      {formatNumber(summaryObject?.netAnnualExpense
+                        ?? 0)}
                     </td>
                   </tr>
 
@@ -1522,19 +1491,16 @@ const Summary = (props) => {
                     <td>Total Monthly Company Expenses</td>
                     <td>
                       $
-                      {summaryObject &&
-                      summaryObject.totalMonthlyCompanyExpenses
-                        ? summaryObject.totalMonthlyCompanyExpenses
-                        : 0}
+                      {formatNumber(summaryObject?.totalMonthlyCompanyExpenses
+                        ?? 0)}
                     </td>
                   </tr>
                   <tr>
                     <td>Total Yearly Company Expenses</td>
                     <td>
                       $
-                      {summaryObject && summaryObject.totalAnnualCompanyExpenses
-                        ? summaryObject.totalAnnualCompanyExpenses
-                        : 0}
+                      {formatNumber(summaryObject?.totalAnnualCompanyExpenses
+                        ?? 0)}
                     </td>
                   </tr>
                   <tr>
@@ -1542,9 +1508,8 @@ const Summary = (props) => {
                     <td>
                       {" "}
                       $
-                      {summaryObject && summaryObject.netYearly
-                        ? summaryObject.netYearly
-                        : null}
+                      {formatNumber(summaryObject?.netYearly
+                        ?? 0)}
                     </td>
                   </tr>
                 </tfoot>
