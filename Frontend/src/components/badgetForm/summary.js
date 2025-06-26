@@ -147,9 +147,6 @@ const Summary = (props) => {
       });
     }, []);
 
-    useEffect(() => {
-      window.scroll(0, 0);
-    }, []);
     const DATA = [
       { Name: "Housing:", value: "" },
       {
