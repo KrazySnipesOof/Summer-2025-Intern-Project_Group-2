@@ -1,13 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import {
-  Button,
-  StepLabel,
-  Step,
-  Stepper,
-  StepContent,
-} from "@material-ui/core";
+import { Button, Tabs, Tab } from "@material-ui/core";
 import { MdHome } from "react-icons/md";
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from "react-icons/bs";
 import { Container, Breadcrumb } from "react-bootstrap";
@@ -38,40 +32,47 @@ const HorizontalLinearStepper = ({
   const [searchParams, setSearchParams] = useSearchParams();
   const tokenResponse = useSelector((state) => state.auth.token);
 
-  const getPersonalBudget = async () => {
-    const response = await getPersonalBudgetAction(tokenResponse);
-    if (response && response.personalBudget) {
-      let personalBudget = response.personalBudget;
-      if (personalBudget.discretionary) {
-        setDiscretionary(personalBudget.discretionary);
-      }
-      if (personalBudget.houseHold) {
-        sethouseHold(personalBudget.houseHold);
-      }
-      if (personalBudget.housing) {
-        setHousing(personalBudget.housing);
-      }
-      if (personalBudget.loanPayments) {
-        setLoanPayments(personalBudget.loanPayments);
-      }
-      if (personalBudget.personalInsurance) {
-        setPersonalInsurance(personalBudget.personalInsurance);
-      }
-      if (personalBudget.transportation) {
-        setTransportation(personalBudget.transportation);
-      }
-      if (personalBudget.companyExpenses) {
-        setCompanyExpenses(personalBudget.companyExpenses);
-      }
-    }
-  };
-
+  
   useEffect(() => {
+    const getPersonalBudget = async () => {
+      const response = await getPersonalBudgetAction(tokenResponse);
+      if (response && response.personalBudget) {
+        let personalBudget = response.personalBudget;
+        if (personalBudget.discretionary) {
+          setDiscretionary(personalBudget.discretionary);
+        }
+        if (personalBudget.houseHold) {
+          sethouseHold(personalBudget.houseHold);
+        }
+        if (personalBudget.housing) {
+          setHousing(personalBudget.housing);
+        }
+        if (personalBudget.loanPayments) {
+          setLoanPayments(personalBudget.loanPayments);
+        }
+        if (personalBudget.personalInsurance) {
+          setPersonalInsurance(personalBudget.personalInsurance);
+        }
+        if (personalBudget.transportation) {
+          setTransportation(personalBudget.transportation);
+        }
+        if (personalBudget.companyExpenses) {
+          setCompanyExpenses(personalBudget.companyExpenses);
+        }
+      }
+    };
+    
     if (searchParams.get("summery") !== null) {
       setActiveStep(7);
     }
     getPersonalBudget();
-  }, [tokenResponse]);
+  }, [tokenResponse, searchParams]);
+
+  useEffect(() => {
+    if (activeStep === steps.length) {
+      navigate("/dashboard");
+    }
+  }, [activeStep, navigate]);
 
   const loginStatus = () => {
     navigate("/dashboard");
@@ -222,9 +223,13 @@ const HorizontalLinearStepper = ({
   };
 
   const savePersonalBudget = async (data) => {
-    const response = await savePersonalBudgetAction(data, tokenResponse);
+    try {
+      await savePersonalBudgetAction(data, tokenResponse);
+    } catch (err) {
+      console.error("Error saving budget:", err);
+    }
   };
-
+  
   const isStepSkipped = (step) => {
     return skipped.has(step);
   };
@@ -468,38 +473,6 @@ const HorizontalLinearStepper = ({
     },
   ];
 
-  const handlestepsData = () => {
-    const stepsData = steps.map((step, index) => {
-      const stepProps = {};
-      const labelProps = {};
-      if (isStepSkipped(index)) {
-        stepProps.completed = false;
-      }
-      {
-        return (
-          <>
-            <Step
-              key={step.label}
-              activeStep={activeStep}
-              className={step.label}
-            >
-              <StepLabel
-                onClick={() => {
-                  setActiveStep(index);
-                }}
-                className="steplabel"
-                {...labelProps}
-              >
-                <h2>{step.label}</h2>
-                <p>{step.subheading}</p>
-              </StepLabel>
-            </Step>
-          </>
-        );
-      }
-    });
-    return stepsData;
-  };
 
   return (
     <div className="budget-form-wrapper">
@@ -531,38 +504,21 @@ const HorizontalLinearStepper = ({
              {activeStep === steps.length - 1 ? (
                <span></span>
              ) : (
-               <div className="budget-menu-list">
-                 <Stepper
-                   activeStep={activeStep}
-                 >
-                   {steps.map((step, index) => {
-                     const stepProps = {};
-                     const labelProps = {};
-                     if (isStepSkipped(index)) {
-                       stepProps.completed = false;
-                     }
-
-                     return (
-                       <Step
-                         key={step.label}
-                         activeStep={activeStep}
-                         className={step.label}
-                       >
-                         <StepLabel
-                           onClick={() => {
-                             setActiveStep(index);
-                           }}
-                           className="steplabel"
-                           {...labelProps}
-                         >
-                           <h2>{step.label}</h2>
-                           <p>{step.subheading}</p>
-                         </StepLabel>
-                       </Step>
-                     );
-                   })}
-                 </Stepper>
-               </div>
+               <div className="budget-menu-list horizontal-tabs">
+                <Tabs
+                  value={activeStep}
+                  onChange={(e, newValue) => setActiveStep(newValue)}
+                  indicatorColor="primary"
+                  textColor="primary"
+                  variant="scrollable"
+                  scrollButtons="auto"
+                  aria-label="budget steps"
+                >
+                  {steps.map((step, index) => (
+                    <Tab key={step.label} label={step.label} />
+                  ))}
+                </Tabs>
+              </div>
              )}
              <div className="budget-content-form">
                <div className="budget-form-heading">
@@ -570,17 +526,11 @@ const HorizontalLinearStepper = ({
                    <span>Step {activeStep + 1}/8</span>
                  </div>
                </div>
-               <Stepper className="steper-form" activeStep={activeStep}>
-                 {steps.map((step, index) => {
-                   return (
-                     <StepContent transitionDuration="auto">
-                       {step.description}
-                     </StepContent>
-                   );
-                 })}
-               </Stepper>
+               <div className="steper-form">
+                 {steps[activeStep].description}
+               </div>
                {activeStep === steps.length ? (
-                 loginStatus()
+                 <span>Redirecting...</span>
                ) : (
                  <div className="stepbtn btm-stepbtn prt-bugf-btn">
                    {activeStep > 0 ? (
@@ -601,9 +551,9 @@ const HorizontalLinearStepper = ({
 
                      {activeStep === steps.length - 1 && (
                        <Link to="/Goals" style={{ textDecoration: "none" }}>
-                         <Button className="submit-btn" onClick={handleNext}>
-                           Submit and go to My-Goals
-                         </Button>
+                          <Button className="submit-btn" onClick={handleNextGoals}>
+                            Submit and go to My-Goals
+                          </Button>
                        </Link>
                      )}
                    </div>
