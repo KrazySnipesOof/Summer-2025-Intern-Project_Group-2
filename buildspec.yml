@@ -1,0 +1,44 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - echo Installing Node.js and npm
+      - npm install -g npm@latest
+      
+  pre_build:
+    commands:
+      - echo Installing backend dependencies
+      - cd Backend
+      - npm install
+      - echo Installing frontend dependencies
+      - cd ../Frontend
+      - npm install
+      - cd ..
+      
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building backend
+      - cd Backend
+      - npm run build || echo "No build script found for backend"
+      - echo Building frontend
+      - cd ../Frontend
+      - npm run build
+      - cd ..
+      
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      
+artifacts:
+  files:
+    - '**/*'
+  base-directory: '.'
+  
+cache:
+  paths:
+    - Backend/node_modules/**/*
+    - Frontend/node_modules/**/*
