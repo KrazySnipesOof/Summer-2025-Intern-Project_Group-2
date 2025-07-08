@@ -1,44 +1,16 @@
 version: 0.2
-
 phases:
   install:
     runtime-versions:
-      nodejs: 20
-    commands:
-      - echo Installing Node.js and npm
-      - npm install -g npm@latest
-      
+      nodejs: 18  # or whatever your code needs
   pre_build:
     commands:
-      - echo Installing backend dependencies
-      - cd Backend
-      - npm install
-      - echo Installing frontend dependencies
-      - cd ../Frontend
-      - npm install
-      - cd ..
-      
+      - echo "Getting ready to check the code"
   build:
     commands:
-      - echo Build started on `date`
-      - echo Building backend
-      - cd Backend
-      - npm run build || echo "No build script found for backend"
-      - echo Building frontend
-      - cd ../Frontend
-      - npm run build
-      - cd ..
-      
+      - echo "Checking the code now"
+      - npm install  # if you have a Node.js project
+      - npm test     # if you have tests
   post_build:
     commands:
-      - echo Build completed on `date`
-      
-artifacts:
-  files:
-    - '**/*'
-  base-directory: '.'
-  
-cache:
-  paths:
-    - Backend/node_modules/**/*
-    - Frontend/node_modules/**/*
+      - echo "Code check complete!"
