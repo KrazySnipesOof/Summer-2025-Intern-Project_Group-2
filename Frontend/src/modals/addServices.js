@@ -14,7 +14,8 @@ export const AddServiceModal = (props) => {
     service: "",
     price: "",
     hours: "",
-    minutes:""
+    minutes:"",
+    inventory: [], //inventory array to store item details
   });
   const [error, setError] = useState([]);
   const typeId = localStorage.getItem("business_Type_id");
@@ -52,6 +53,14 @@ export const AddServiceModal = (props) => {
       formErrors["time"] = "Service Hours is Required";
       isValid =false
     }
+    // Validate inventory items
+    inventory.forEach((item, index) => {
+      if (!item.productName || !item.productName.trim()) {
+        isValid = false;
+        formErrors[`inventoryProductName${index}`] = `Inventory item #${index + 1} requires a Product Name`;
+      }
+    });
+
     setError(formErrors);
     return isValid;
   };
@@ -72,6 +81,7 @@ export const AddServiceModal = (props) => {
           hours: hours,
           minutes: minutes,
           businessTypeId: JSON.parse(typeId),
+          inventory: addService.inventory,
         };
         if (tokenResponse && serviceObj) {
           const response = await businessService.additionalBusinessService(
@@ -102,7 +112,7 @@ export const AddServiceModal = (props) => {
   const handleCloseOnCloseButton = () => {
     props.setOpenServicesModel(false);
     setError([])
-    setAddService({ ...addService, price: "", service: "",hours:"",minutes:"" });
+    setAddService({ ...addService, price: "", service: "",hours:"",minutes:"", inventory: [], });  //reset inventory
   };
   const handleChange = (e) => {
     e.preventDefault();
