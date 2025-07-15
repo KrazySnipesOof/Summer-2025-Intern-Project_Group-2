@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import FullCalendar from "@fullcalendar/react";
@@ -53,14 +53,14 @@ const CalenderApp = () => {
     return startTime;
   };
 
-  const getDetails = async (start = null, end = null) => { //set start and end values to null
+
+  const getDetails = useCallback( async(start = null, end = null) => { //set start and end values to null
     const resp = await bookingService.bookingList(start && end ? { start, end } : {});
-    if (resp.status == 200) {
+    if (resp.status === 200) {
       const response = resp?.data?.data;
       let arr = [];
       if (response.length > 0) {
-        response.map((res) => {
-          let obj = {
+        arr = response.map((res) => ({
             title: res?.service?.map((serv) => serv?.service).join(", ")
               || "",
             groupId: res?._id,
@@ -78,29 +78,27 @@ const CalenderApp = () => {
               .utc()
               .format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"),
             borderColor:
-              activeView == "listMonth" || activeView == "dayGridMonth"
+              activeView === "listMonth" || activeView === "dayGridMonth"
                 ? res?.eventColor || "#CCCCCC"  //default gray color
                 : "#00000040",
             textColor:
-              res?.bookingStatus == "Cancelled"
+              res?.bookingStatus === "Cancelled"
                 ? "#777981"
                 : res?.show
                 ? "#2F3033"
                 : "#FFFFFF",
             color:
-              res?.bookingStatus == "Cancelled"
+              res?.bookingStatus === "Cancelled"
                 ? "#BCBFC7"
                 : res?.show
                 ? "#9FD19F"
                 : "#D95B30",
             name: res?.name,
-          };
-          arr.push(obj);
-        });
+        }));
       }
       setData(arr);
     }
-  };
+  }, [activeView, setData]);
   //Effect to fetch bookings when view or date range changes
   useEffect(() => {
     //getDetails();
@@ -109,7 +107,7 @@ const CalenderApp = () => {
     } else {
       getDetails(); //Initial load fallback
     }
-  }, [activeView, dateRange]); //Re-fetch if view or visible range changes
+  }, [activeView, dateRange, getDetails]); //Re-fetch if view or visible range changes
 
   //updated to capture view and visible date range
   const onDatesSet = (info) => {
@@ -121,28 +119,25 @@ const CalenderApp = () => {
 
   useEffect(() => {
     const button = document.querySelector(".fc-calendar-button");
-    if (button) {
+    if (!button) return; 
       button.innerHTML = "";
 
       const icon = document.createElement("span");
       icon.innerHTML = `<i class="fa fa-caret-down"></i>`;
 
-      button.addEventListener("click", () => {
-        if (datepickerRef.current) {
-          datepickerRef.current.setOpen(true);
-        }
-      });
+      // Define the handler function once, so it can be removed later
+      const handleClick = () => {
+      if (datepickerRef.current) {
+        datepickerRef.current.setOpen(true);
+      }
+    };
 
-      button.appendChild(icon);
-    }
+  button.addEventListener("click", handleClick);
+  button.appendChild(icon);
 
     return () => {
       if (button) {
-        button.removeEventListener("click", () => {
-          if (datepickerRef.current) {
-            datepickerRef.current.setOpen(true);
-          }
-        });
+        button.removeEventListener("click", handleClick);
       }
     };
   }, []);
@@ -154,7 +149,7 @@ const CalenderApp = () => {
       resp?.data?.data &&
       resp?.data?.data.length > 0 &&
       resp?.data?.data[0]?.service;
-    if (resp.status == 200) {
+    if (resp.status === 200) {
       setServices(response);
     }
   };
@@ -167,12 +162,11 @@ const CalenderApp = () => {
     let data = { service: e.target.value };
     const resp = await bookingService.filterBooking(data);
 
-    if (resp.status == 200) {
+    if (resp.status === 200) {
       const response = resp?.data?.data;
       let arr = [];
       if (response.length > 0) {
-        response.map((res) => {
-          let obj = {
+        arr = response.map((res) => ({
             title: res?.service?.map((serv) => serv.service),
             groupId: res._id,
             start: moment(
@@ -189,32 +183,30 @@ const CalenderApp = () => {
               .utc()
               .format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"),
             borderColor:
-              activeView == "listMonth" || activeView == "dayGridMonth"
+              activeView === "listMonth" || activeView === "dayGridMonth"
                 ? res?.eventColor
                 : "#00000040",
             textColor:
-              res?.bookingStatus == "Cancelled"
+              res?.bookingStatus === "Cancelled"
                 ? "#777981"
                 : res?.show
                 ? "#2F3033"
                 : "#FFFFFF",
             color:
-              res?.bookingStatus == "Cancelled"
+              res?.bookingStatus === "Cancelled"
                 ? "#BCBFC7"
                 : res?.show
                 ? "#9FD19F"
                 : "#D95B30",
             name: res?.name,
-          };
-          arr.push(obj);
-        });
+          }));
       }
       setData(arr);
     }
   };
   const handleEventClick = ({ event }) => {
     let id = event?._def?.defId;
-    if (Number(idmodal) == Number(id)) {
+    if (Number(idmodal) === Number(id)) {
       setShowEvent(false);
       setIdModal(0);
     } else {
@@ -222,7 +214,7 @@ const CalenderApp = () => {
       setInfo(event);
       setIdModal(id);
     }
-    const filteredData = data.filter((d) => d.groupId == event?._def?.groupId);
+    const filteredData = data.filter((d) => d.groupId === event?._def?.groupId);
     setFilterData(filteredData);
   };
 
@@ -308,8 +300,8 @@ const CalenderApp = () => {
           headerToolbar={{
             right: "listMonth,timeGridDay,timeGridWeek,dayGridMonth",
             center: `prev,title,calendar,next${
-              activeView == "timeGridDay" ? ",today" : ""
-            }${activeView == "timeGridWeek" ? ",thisWeek" : ""}`,
+              activeView === "timeGridDay" ? ",today" : ""
+            }${activeView === "timeGridWeek" ? ",thisWeek" : ""}`,
             left: "",
           }}
           customButtons={{
@@ -367,7 +359,7 @@ export default CalenderApp;
 
 function renderEventContent(eventInfo) {
   const currentView = eventInfo.view.type;
-  if (currentView != "listMonth") {
+  if (currentView !== "listMonth") {
     return (
       <div className="custom-event">
         <div className="event-top">

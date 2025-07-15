@@ -9,7 +9,7 @@ const Mongoose = require("mongoose");
 
 const createBusinessService = async (req, res) => {
   try {
-    const { businessTypeId, service, price, hours, minutes } = req.body;
+    const { businessTypeId, service, price, hours, minutes, inventoryItems } = req.body;
 
     const role = await userCollection.findOne({ _id: req._user });
     const existsBusinessType = await businessServiceCollection.find({
@@ -48,6 +48,7 @@ const createBusinessService = async (req, res) => {
         addedBy: req._user,
         role: role.role,
         serviceTime,
+        inventoryItems: inventoryItems || [],
       };
 
       const createdService = await businessService.post(serviceObject);
@@ -226,6 +227,10 @@ const editBusinessService = async (req, res, next) => {
         businessTypeId: req.body.businessTypeId,
         service: req.body.service,
       };
+      //ensures inventoryItems is updated with frontend edits 
+      if (req.body.inventoryItems) {
+        service.inventoryItems = req.body.inventoryItems;
+      }
 
       const result = await businessService.updateById(Id, service);
       const data = await goalsCompanyBudget.updateOne(

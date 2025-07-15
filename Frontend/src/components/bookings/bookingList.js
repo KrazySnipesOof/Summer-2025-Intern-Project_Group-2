@@ -28,7 +28,7 @@ const BookingList = (props) => {
   const getSchedule = async () => {
     if (reduxToken) {
       const response = await calenderService.getBookingSchedule(reduxToken);
-      if (response?.status == 200) {
+      if (response?.status === 200) {
         let data1 = response?.data?.data[0]?.scheduledData;
         const currentDate = new Date();
         const filteredArray = data1?.filter((obj) => {
@@ -55,7 +55,7 @@ console.log(schedule,"LLLLLLLLLLLLLLLLLLLLL")
 
   const getBooking = async () => {
     const response = await bookingService.singleBooking(id);
-    if (response?.status == 200) {
+    if (response?.status === 200) {
       setData(response?.data?.data);
     } else {
       console.log(":::error");
@@ -85,7 +85,7 @@ console.log(schedule,"LLLLLLLLLLLLLLLLLLLLL")
       show: false,
     };
     const response = await bookingService.cancelBooking(id, obj);
-    if (response.status == 200) {
+    if (response.status === 200) {
 
       createNotification("success", response?.data?.message);
       handleClose();
@@ -173,14 +173,14 @@ console.log(schedule,"LLLLLLLLLLLLLLLLLLLLL")
                       <div className="bk-cdt">
                         <div className="bkstatus">
                           <span>
-                            {data?.bookingType == "self"
+                            {data?.bookingType === "self"
                               ? "Self"
-                              : data?.bookingType == "giftcertificate"
+                              : data?.bookingType === "giftcertificate"
                                 ? "Gift Certificate"
                                 : ""}
                           </span>
                         </div>
-                        {data && data.bookingType == "giftcertificate" ? (
+                        {data && data.bookingType === "giftcertificate" ? (
                           <div>
                             <p>
                               <b>Benificial Name: </b>
@@ -210,7 +210,7 @@ console.log(schedule,"LLLLLLLLLLLLLLLLLLLLL")
                     </div>
                   </div>
                   <div>
-                    {data?.bookingStatus == "Confirmed" ? (
+                    {data?.bookingStatus === "Confirmed" ? (
                       data?.show === false ? (
                         <div className="cancle-booking">
                           <Button

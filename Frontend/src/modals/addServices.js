@@ -14,7 +14,8 @@ export const AddServiceModal = (props) => {
     service: "",
     price: "",
     hours: "",
-    minutes:""
+    minutes:"",
+    inventory: [], //inventory array to store item details
   });
   const [error, setError] = useState([]);
   const typeId = localStorage.getItem("business_Type_id");
@@ -52,6 +53,14 @@ export const AddServiceModal = (props) => {
       formErrors["time"] = "Service Hours is Required";
       isValid =false
     }
+    // Validate inventory items
+    inventory.forEach((item, index) => {
+      if (!item.productName || !item.productName.trim()) {
+        isValid = false;
+        formErrors[`inventoryProductName${index}`] = `Inventory item #${index + 1} requires a Product Name`;
+      }
+    });
+
     setError(formErrors);
     return isValid;
   };
@@ -72,6 +81,7 @@ export const AddServiceModal = (props) => {
           hours: hours,
           minutes: minutes,
           businessTypeId: JSON.parse(typeId),
+          inventory: addService.inventory,
         };
         if (tokenResponse && serviceObj) {
           const response = await businessService.additionalBusinessService(
@@ -102,7 +112,7 @@ export const AddServiceModal = (props) => {
   const handleCloseOnCloseButton = () => {
     props.setOpenServicesModel(false);
     setError([])
-    setAddService({ ...addService, price: "", service: "",hours:"",minutes:"" });
+    setAddService({ ...addService, price: "", service: "",hours:"",minutes:"", inventory: [], });  //reset inventory
   };
   const handleChange = (e) => {
     e.preventDefault();
@@ -121,6 +131,38 @@ export const AddServiceModal = (props) => {
     }
   };
 
+  //Update inventory fields
+  const handleInventoryChange = (index, e) => {
+    const { name, value } = e.target;
+    const newInventory = [...addService.inventory];
+    newInventory[index] = { ...newInventory[index], [name]: value };
+    setAddService({ ...addService, inventory: newInventory });
+  };
+
+  //Add new inventory item
+  const addInventoryItem = () => {
+    setAddService({
+      ...addService,
+      inventory: [
+        ...addService.inventory,
+        {
+          productName: "",
+          price: "",
+          inStock: "",
+          servicesUsedIn: "",
+          estUses: "",
+        },
+      ],
+    });
+  };
+
+  //Remove inventory item
+  const removeInventoryItem = (index) => {
+    const newInventory = addService.inventory.filter((_, i) => i !== index);
+    setAddService({ ...addService, inventory: newInventory });
+  };
+
+  
   return (
     <>
     
@@ -208,6 +250,75 @@ export const AddServiceModal = (props) => {
             </div>
             <span className="form-error">{error.time}</span>
           </div>
+
+          //Inventory Section
+          <div className="popup-form-box mt-4">
+            <label className="form-label">Inventory Used in This Service</label>
+            {addService.inventory.map((item, index) => (
+              <div
+                key={index}
+                style={{ marginBottom: "16px", borderBottom: "1px solid #ccc", paddingBottom: "10px" }}
+              >
+                <input
+                  type="text"
+                  name="productName"
+                  placeholder="Product Name"
+                  className="input1 mb-2"
+                  value={item.productName}
+                  onChange={(e) => handleInventoryChange(index, e)}
+                />
+                <span className="form-error">{error[`inventoryProductName${index}`]}</span>
+
+                <input
+                  type="text"
+                  name="price"
+                  placeholder="Price"
+                  className="input1 mb-2"
+                  value={item.price}
+                  onChange={(e) => handleInventoryChange(index, e)}
+                />
+                <input
+                  type="number"
+                  name="inStock"
+                  placeholder="In Stock"
+                  className="input1 mb-2"
+                  value={item.inStock}
+                  onChange={(e) => handleInventoryChange(index, e)}
+                />
+                <input
+                  type="text"
+                  name="servicesUsedIn"
+                  placeholder="Services Product Used In"
+                  className="input1 mb-2"
+                  value={item.servicesUsedIn}
+                  onChange={(e) => handleInventoryChange(index, e)}
+                />
+                <input
+                  type="number"
+                  name="estUses"
+                  placeholder="Estimated Uses"
+                  className="input1 mb-2"
+                  value={item.estUses}
+                  onChange={(e) => handleInventoryChange(index, e)}
+                />
+                <button
+                  type="button"
+                  onClick={() => removeInventoryItem(index)}
+                  className="btn btn-sm btn-danger"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={addInventoryItem}
+              className="btn btn-sm btn-outline-primary"
+            >
+              + Add Inventory Item
+            </button>
+          </div>
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseOnCloseButton}>

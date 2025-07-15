@@ -1,0 +1,47 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - echo Installing Node.js and npm
+      - npm install -g npm@latest
+      
+  pre_build:
+    commands:
+      - echo Logging in to npm registry if needed
+      - echo Installing backend dependencies
+      - cd Backend && npm install
+      - echo Installing frontend dependencies  
+      - cd ../Frontend && npm install
+      - cd ..
+      
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building React frontend
+      - cd Frontend && npm run build
+      - echo Frontend build completed
+      - cd ../Backend
+      - echo Backend does not require build step
+      - cd ..
+      
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Listing build artifacts
+      - ls -la Frontend/build/ || echo "No build directory found"
+      
+artifacts:
+  files:
+    - 'Frontend/build/**/*'
+    - 'Backend/**/*'
+    - '!Backend/node_modules/**/*'
+    - '!Frontend/node_modules/**/*'
+  base-directory: '.'
+  
+cache:
+  paths:
+    - Backend/node_modules/**/*
+    - Frontend/node_modules/**/*

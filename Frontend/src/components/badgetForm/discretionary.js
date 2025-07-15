@@ -1,9 +1,6 @@
-import React, { useEffect } from "react";
+//import React, { useEffect } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 const Discretionary = (props) => {
-  useEffect(() => {
-    window.scroll(0, 0);
-  }, []);
   return (
     <>
       <div className="dashboard-wrapper">
