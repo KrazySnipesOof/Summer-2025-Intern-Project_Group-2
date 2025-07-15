@@ -166,10 +166,6 @@ const Signup = ({ notificationCount, setNotificationCount }) => {
       isValid = false;
       formError["state"] = "Residence is required";
     }
-    if (!items.length) {
-      isValid = false;
-      formError["items"] = "Business Type is required";
-    }
     if (!businessName) {
       isValid = false;
       formError["businessName"] = "Business Name is required";

@@ -13,7 +13,6 @@ const updateone = (condition, payload) => {
 const updateLoginStatus = (condition, payload) => {
   return userCollection.findByIdAndUpdate(condition, payload);
 };
-return axios.post("/api/v1/auth/signin", data);
 module.exports = {
   findOne,
   post,

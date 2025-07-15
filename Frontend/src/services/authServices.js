@@ -1,10 +1,8 @@
 import axios from "axios";
 
-const apiUrl = process.env.REACT_APP_API_BASE_URL
-
 export const register = async (data) => {
   try {
-    const response = await axios.post(`${apiUrl}/frontend/signup`, data);
+    const response = await axios.post(`/frontend/signup`, data);
     if (response.status == 201) {
       return response;
     } else {
@@ -19,11 +17,10 @@ export const register = async (data) => {
   }
 };
 
-
 export const accountActivationByClient = async (id , firstname ,email) => {
   try {
     let response = await axios.post(
-      `${apiUrl}/frontend/accountActivateByClient/${id}`,
+      `/frontend/accountActivateByClient/${id}`,
     {firstname:firstname,email}
     );
     if (response.status == 200) {
@@ -40,11 +37,10 @@ export const accountActivationByClient = async (id , firstname ,email) => {
   }
 };
 
-
 export const accountActivationAction = async (token) => {
   try {
     let response = await axios.put(
-      `${apiUrl}/frontend/activate/${token}`
+      `/frontend/activate/${token}`
     );
     if (response.status == 200) {
       return response;
@@ -62,7 +58,7 @@ export const accountActivationAction = async (token) => {
 
 export const login = async (data) => {
   try {
-    const response = await axios.post(`${apiUrl}/frontend/login`, data);
+    const response = await axios.post(`/frontend/login`, data);
     if (response.status === 200) {
       return response;
     } else {
@@ -79,7 +75,7 @@ export const login = async (data) => {
 
 export const forgotPassword = async (email) => {
   try {
-    const response = await axios.post(`${apiUrl}/frontend/forgot`, email);
+    const response = await axios.post(`/frontend/forgot`, email);
     if (response.status == 200) {
       return response;
     } else {
@@ -95,17 +91,17 @@ export const forgotPassword = async (email) => {
 };
 
 export const loginUser = async (user) => {
-  return await axios.post(`${apiUrl}/frontend/login`, { ...user });
+  return await axios.post(`/frontend/login`, { ...user });
 };
 
 export const autoSignin = async (users) => {
-  return await axios.post(`${apiUrl}/frontend/autoSignin`, { ...users });
+  return await axios.post(`/frontend/autoSignin`, { ...users });
 };
 
 export const resetPassword = async (data) => {
   try {
     const response = await axios.post(
-      `${apiUrl}/frontend/resetPassword`,
+      `/frontend/resetPassword`,
       data
     );
     if (response.status == 201) {
@@ -124,7 +120,7 @@ export const resetPassword = async (data) => {
 export const getUserByEmail = async (email) => {
   try {
     const response = await axios.get(
-      `${apiUrl}/frontend/getUserByEmail/${email}`
+      `/frontend/getUserByEmail/${email}`
     );
     if (response.status === 200) {
       return response.data;
@@ -143,7 +139,7 @@ export const getUserByEmail = async (email) => {
 export const getUserById = async (id) => {
   try {
     const response = await axios.get(
-      `${apiUrl}/frontend/getUser/${id}`
+      `/frontend/getUser/${id}`
     );
     if (response.status === 200) {
       return response.data;
@@ -162,7 +158,7 @@ export const getUserById = async (id) => {
 export const getCountryData = async () => {
   try {
     const response = await axios.get(
-      `${apiUrl}/frontend/user/countryCode`
+      `/frontend/user/countryCode`
     );
     if (response.status === 200) {
       return response.data;

@@ -81,10 +81,6 @@ const Register = () => {
       isValid = false;
       formError["state"] = "State is required";
     }
-    if (!bussType) {
-      isValid = false;
-      formError["bussType"] = "Business-Type is required";
-    }
     if (!bussName) {
       isValid = false;
       formError["bussName"] = "Business-Name is required";

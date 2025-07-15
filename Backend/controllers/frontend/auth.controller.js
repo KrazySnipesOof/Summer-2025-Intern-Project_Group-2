@@ -15,74 +15,98 @@ const signin = async (req, res) => {
   try {
     const { email, password, fcmToken } = req.body;
     const user = await authService.findOne({ email });
-    const resultsArray = await Promise.all(
-      user.businessType.map(async (businessTypeId) => {
-        return await businessService.findOne({ _id: businessTypeId });
-      })
-    );
-    if (user) {
-      const validPassword = await comparePassword(password, user.password);
-
-      if (!validPassword) {
-        sendWrongPasswordMail(email);
-        return res.status(203).json({
-          message: "Invalid username/password",
-        });
-      }
-
-      if (user.role !== 2) {
-        return res.status(203).send({
-          message: "Access denied!",
-          status: 403,
-        });
-      }
-      if (user.isDeleted == true) {
-        return res.status(203).send({
-          message: "Your account is deactivated",
-          status: 403,
-        });
-      }
-      const token = await generateToken(user);
-      if (!token) {
-        return res.status(206).json({
-          message: "Error in generating token",
-        });
-      }
-
-      const userId = user._id;
-
-      const getUser = await authService.find({ _id: userId });
-      let array = getUser[0].fcmToken;
-
-      if (!array.includes(fcmToken)) {
-        array.push(fcmToken);
-      }
-
-      let obj = {
-        fcmToken: array,
-      };
-
-      let updatedUser = await authService.update(userId, { fcmToken: array, isActivateAccount : false});
-      if (user?.status == 0 && user?.HistoryActivateStatus == false) {
-        returnAccountActivationMail(user?.email);
-        sendReturnuser(user?.firstName, resultsArray)
-      }
-
-      res.status(200).json({
-        message: "Logged In",
-        data: {
-          user: user,
-          token: token,
-        },
-      });
-    } else {
-      res.status(206).json({
+    if (!user) {
+      return res.status(206).json({
         message: "Email doesn't exist",
       });
     }
+
+    // Defensive: handle missing or empty businessType
+    let businessTypeArray = [];
+    if (Array.isArray(user.businessType)) {
+      businessTypeArray = user.businessType.filter(Boolean);
+    }
+
+    let resultsArray = [];
+    try {
+      resultsArray = await Promise.all(
+        businessTypeArray.map(async (businessTypeId) => {
+          try {
+            return await businessService.findOne({ _id: businessTypeId });
+          } catch (e) {
+            console.error("BusinessType lookup failed for ID:", businessTypeId, e);
+            return null;
+          }
+        })
+      );
+    } catch (e) {
+      console.error("Error in businessType Promise.all:", e);
+      resultsArray = [];
+    }
+
+    const validPassword = await comparePassword(password, user.password);
+
+    if (!validPassword) {
+      sendWrongPasswordMail(email);
+      return res.status(203).json({
+        message: "Invalid username/password",
+      });
+    }
+
+    if (user.role !== 2) {
+      return res.status(203).send({
+        message: "Access denied!",
+        status: 403,
+      });
+    }
+    if (user.isDeleted == true) {
+      return res.status(203).send({
+        message: "Your account is deactivated",
+        status: 403,
+      });
+    }
+    const token = await generateToken(user);
+    if (!token) {
+      return res.status(206).json({
+        message: "Error in generating token",
+      });
+    }
+
+    const userId = user._id;
+    const getUser = await authService.find({ _id: userId });
+    let array = (getUser[0] && Array.isArray(getUser[0].fcmToken)) ? getUser[0].fcmToken : [];
+
+    if (fcmToken && !array.includes(fcmToken)) {
+      array.push(fcmToken);
+    }
+
+    let obj = {
+      fcmToken: array,
+    };
+
+    let updatedUser = await authService.update(userId, { fcmToken: array, isActivateAccount : false});
+    if (user?.status == 0 && user?.HistoryActivateStatus == false) {
+      returnAccountActivationMail(user?.email);
+      sendReturnuser(user?.firstName, resultsArray)
+    }
+
+    res.status(200).json({
+      message: "Logged In",
+      data: {
+        user: user,
+        token: token,
+      },
+    });
   } catch (error) {
+    // Log error details for debugging
+    console.error('Login error:', {
+      error: error.stack || error,
+      email: req.body.email,
+      fcmToken: req.body.fcmToken,
+      // Do not log password for security reasons
+    });
     res.status(500).json({
-      message: error.message,
+      message: "Internal server error. Please contact support if this persists.",
       data: {},
       success: false,
     });

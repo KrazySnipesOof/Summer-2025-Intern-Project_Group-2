@@ -12,11 +12,16 @@ const generateToken = (data) => {
     userData,
     iat: Math.floor(Date.now() / 1000) - 30,
   };
+  if (!process.env.FRONTEND_JWT_SECRET) {
+    console.error('FRONTEND_JWT_SECRET is not set in environment variables.');
+    throw new Error('JWT secret is not configured on the server.');
+  }
   try {
     const token = jwt.sign(payload, process.env.FRONTEND_JWT_SECRET);
     return token;
   } catch (err) {
-    return false;
+    console.error('JWT sign error:', err);
+    throw err;
   }
 };
 
